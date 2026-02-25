@@ -1,0 +1,9 @@
+model = "gpt-5.3-codex"
+model_reasoning_effort = "xhigh"
+personality = "pragmatic"
+web_search = "live"
+
+[mcp_servers.n8nDocs]
+command = "npx"
+args = ["-y", "mcp-remote", "https://n8n.mcp.kapa.ai/"]
+startup_timeout_sec = 600
