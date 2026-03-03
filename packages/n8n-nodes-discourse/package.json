@@ -1,0 +1,52 @@
+{
+	"name": "@machinesch01ar/n8n-nodes-discourse",
+	"version": "0.1.0",
+	"description": "n8n node for Discourse AI artifact, category, post, topic, personal message, upload, and Data Explorer operations",
+	"license": "MIT",
+	"homepage": "https://github.com/MachineSch01ar/DiscoFlow",
+	"keywords": [
+		"n8n-community-node-package"
+	],
+	"author": {
+		"name": "Dylan Wardlow",
+		"email": "dylanwardlow@users.noreply.github.com"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/MachineSch01ar/DiscoFlow.git"
+	},
+	"scripts": {
+		"build": "n8n-node build",
+		"build:watch": "tsc --watch",
+		"dev": "n8n-node dev",
+		"lint": "n8n-node lint",
+		"lint:fix": "n8n-node lint --fix",
+		"release": "n8n-node release",
+		"prepublishOnly": "n8n-node prerelease"
+	},
+	"files": [
+		"dist"
+	],
+	"n8n": {
+		"n8nNodesApiVersion": 1,
+		"strict": true,
+		"credentials": [
+			"dist/credentials/DiscourseExtendedApi.credentials.js",
+			"dist/credentials/ElevenLabsApi.credentials.js",
+			"dist/credentials/DigitalOceanSpacesApi.credentials.js"
+		],
+		"nodes": [
+			"dist/nodes/Discourse/DiscourseExtended.node.js"
+		]
+	},
+	"devDependencies": {
+		"@n8n/node-cli": "*",
+		"eslint": "9.32.0",
+		"prettier": "3.6.2",
+		"release-it": "^19.0.4",
+		"typescript": "5.9.2"
+	},
+	"peerDependencies": {
+		"n8n-workflow": "*"
+	}
+}

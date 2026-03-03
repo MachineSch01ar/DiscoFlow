@@ -1,207 +1,222 @@
-# @dylanwardlow/n8n-nodes-discourse
+  [![CI](https://github.com/MachineSch01ar/DiscoFlow/actions/workflows/ci.yml/badge.svg)](https://github.com/MachineSch01ar/DiscoFlow/actions/workflows/ci.yml)
+  [![License](https://img.shields.io/github/license/MachineSch01ar/DiscoFlow)](LICENSE.md)
+  [![Python](https://img.shields.io/badge/python-3.12-blue.svg)](#contributor-quick-start)
+  [![Node](https://img.shields.io/badge/node-22.x-339933.svg)](#contributor-quick-start)
+  [![uv](https://img.shields.io/badge/uv-required-6e56cf.svg)](#contributor-quick-start)
 
-n8n community node package for managing Discourse topics and uploads, including presigned object storage workflows.
+# DiscoFlow
 
-This package is currently optimized for private/internal use.
+DiscoFlow is an open-source project for building reliable, programmatic, and cognitively aware workflows around Discourse.
 
-## Included Node
+## Mission
 
-- **Discourse Extended** (`discourseExtended`)
-  - **Resource: Topic**
-    - `Create`
-    - `Delete`
-    - `Get`
-    - `Get Many (Latest)`
-    - `Get Many (Top)`
-    - `Search`
-    - `Set Status`
-    - `Update`
-  - **Resource: Upload**
-    - `Create`
-    - `Create From Source URL`
-    - `Upload to Object Storage`
+DiscoFlow exists to help communities run on Discourse with deeper automation, stronger operational reliability, and progressively more intelligent behavior.
 
-Node naming note: this package uses `Discourse Extended` to avoid confusion with n8n's built-in Discourse node.
+## Vision
 
-## Installation
+DiscoFlow is built on a simple long-term thesis:
 
-Community nodes install from npm is for self-hosted n8n. Unverified npm community packages are not available the same way on n8n Cloud.
+- Discourse is one of the strongest communication/community platforms available today.
+- Discourse being open source with a complete JSON REST API makes it an ideal foundation for advanced automation.
+- Cognitive systems are becoming essential infrastructure, not optional features.
+- Community operators should be able to integrate new intelligence capabilities without brittle custom glue code.
 
-### Option A: Local development/private package via `npm link`
+Our goal is to make a Discourse instance increasingly "cognitive" and "cognizant" over time through practical tooling, not hype cycles.
 
-From this repository:
+## Why Discourse
+
+DiscoFlow is intentionally Discourse-first because Discourse offers:
+
+- A mature open-source core.
+- A rich JSON REST API that is straightforward to integrate through HTTP workflows.
+- A strong product and community mission focused on healthy discourse.
+- A fast-moving AI feature surface that can be extended and orchestrated externally.
+
+## What DiscoFlow Tries To Solve
+
+Today, many Discourse teams face one or more of these problems:
+
+- Repetitive admin/moderation operations performed manually.
+- One-off scripts with weak observability and poor portability.
+- Limited integration between Discourse operations and modern AI systems.
+- Difficulty operationalizing research-grade ideas from AI and cognitive science in production workflows.
+
+DiscoFlow addresses this by combining an n8n-native node package with deterministic contributor tooling and a clear architecture for growth.
+
+## Strategic Objectives
+
+- Build high-coverage, production-usable Discourse automation primitives in n8n.
+- Make local development and testing reproducible for all contributors.
+- Support practical integrations with state-of-the-art AI tooling, including LLM-based workflows.
+- Incorporate concepts from AI as a scientific field and from cognitive science when they improve real community outcomes.
+- Continuously align and interoperate with Discourse's core AI capabilities.
+
+## Current Scope (Today)
+
+DiscoFlow currently centers on one package:
+
+- `packages/n8n-nodes-discourse` providing the **Discourse Extended** n8n community node.
+
+Current supported resources include:
+
+- `AI Artifact`
+- `AI Artifact Storage`
+- `Category`
+- `Personal Message`
+- `Post`
+- `Topic`
+- `Upload`
+- `Data Explorer`
+
+Full feature and operation details:
+
+- [`packages/n8n-nodes-discourse/README.md`](packages/n8n-nodes-discourse/README.md)
+
+## Long-Term Direction
+
+DiscoFlow is intentionally structured as a multi-component system over time. The node package is phase one.
+
+Future components may include:
+
+- Higher-level orchestration services around Discourse workflows.
+- Cognitive pipelines for moderation, synthesis, memory, and retrieval.
+- Evaluation and feedback loops to measure real community impact.
+- Research-to-production adapters for experimentally grounded AI/cognitive methods.
+
+## Alignment with Discourse AI
+
+DiscoFlow is designed to complement, not compete with, Discourse core AI functionality.
+
+Project posture:
+
+- Track Discourse AI feature evolution continuously.
+- Integrate with Discourse AI capabilities where it improves user/admin outcomes.
+- Keep external automation and cognition layers interoperable with core platform behavior.
+
+## Architecture Overview
+
+Repository structure:
+
+- `packages/n8n-nodes-discourse`
+  TypeScript n8n community node package (`Discourse Extended`).
+- `src/discoflow_cli`
+  Python Typer CLI used as the primary contributor interface.
+- `scripts/dev-setup.sh`
+  One-time bootstrap script for contributors.
+- `docs/local-dev.md`
+  Canonical local setup and testing runbook.
+- `discourse-extended-skills.csv`
+  Skill catalog seed file (one row per Discourse Extended action) for n8n Data Table imports/sync workflows.
+- `.github/workflows/ci.yml`
+  CI checks for Python tooling and node package quality.
+
+Local development lifecycle:
+
+1. `./scripts/dev-setup.sh`
+2. `uv run --no-editable discoflow bootstrap` (handled by setup script)
+3. `uv run --no-editable discoflow start`
+4. `uv run --no-editable discoflow watch`
+5. Validate behavior in n8n at `http://localhost:5678`
+
+## Contributor Quick Start
+
+From repository root:
 
 ```bash
-npm install
-npm run build
-npm link
+./scripts/dev-setup.sh
 ```
 
-In your n8n custom extensions folder:
+Canonical command form is `uv run --no-editable discoflow ...`.
+This avoids editable `.pth` import edge cases seen on some macOS environments.
+`UV_NO_EDITABLE=1` remains a valid shell-level fallback when needed.
+
+If you run commands from outside repo root, set:
 
 ```bash
-mkdir -p ~/.n8n/custom
-cd ~/.n8n/custom
-npm init -y # only if package.json does not exist
-npm link @dylanwardlow/n8n-nodes-discourse
+export DISCOFLOW_REPO_ROOT="/absolute/path/to/DiscoFlow"
 ```
 
-Restart n8n and search for the node name `Discourse Extended` in the node picker.
-
-### Option B: Install from npm in n8n UI
-
-If published to npm, install from **Settings > Community Nodes > Install** using package name:
+Daily workflow:
 
 ```bash
-@dylanwardlow/n8n-nodes-discourse
+uv run --no-editable discoflow start
+uv run --no-editable discoflow watch
 ```
 
-You can pin a published version when needed:
+For node description/UI metadata changes:
 
 ```bash
-@dylanwardlow/n8n-nodes-discourse@0.1.0
+uv run --no-editable discoflow ui-refresh
 ```
 
-### Option C: Manual install in Docker/queue mode/private registries
-
-Inside the n8n environment (for example, Docker shell), install the package in the node extensions directory and restart n8n:
+Diagnostics:
 
 ```bash
-mkdir -p ~/.n8n/nodes
-cd ~/.n8n/nodes
-npm i @dylanwardlow/n8n-nodes-discourse
+uv run --no-editable discoflow doctor
+uv run --no-editable discoflow status
 ```
 
-If you use a non-default custom extensions path, configure `N8N_CUSTOM_EXTENSIONS`.
+Managed logs:
 
-## Credentials
+- `.tmp/dev/n8n.log`
+- `.tmp/dev/watch.log`
 
-- **Discourse API** (`discourseApi`)
-  - `Base URL` (example: `https://forum.example.com`)
-  - `API Key`
-  - `API Username`
-
-Auth headers sent on requests:
-
-- `Api-Key`
-- `Api-Username`
-
-Credential test endpoint: `GET /latest.json?per_page=1`
-
-## Operations
-
-### Topic
-
-- `Create`: creates topic via `POST /posts.json` with `title`, `raw`, optional `category` and additional fields.
-- `Delete`: deletes topic via `DELETE /t/{id}.json`; returns `{ deleted: true }`.
-- `Get`: fetches topic via `GET /t/{id}.json`; supports simplify output.
-- `Get Many (Latest)`: uses `GET /latest.json`; supports `Return All`, `Limit`, ordering fields, and simplify output.
-- `Get Many (Top)`: uses `GET /top.json`; supports `Period`, `Return All`, `Limit`, and simplify output.
-- `Search`: uses `GET /search.json` with `q`; supports paging and simplify output.
-- `Set Status`: updates topic status via `PUT /t/{id}/status.json` with status + enabled flag and optional `until` for pinned status.
-- `Update`: updates topic via `PUT /t/-/{id}.json` using `topic.title` and/or `topic.category_id`.
-
-For topic selectors, ID and full topic URL are both supported through an n8n resource locator field.
-
-### Upload
-
-- `Create`: uploads n8n binary data directly to Discourse via multipart `POST /uploads.json`.
-  - Supports `Type`, `Synchronous`, `User ID` (required for avatar), `Additional Fields`, and `Simplify`.
-- `Create From Source URL`: downloads source file from URL, then uploads it to Discourse via `POST /uploads.json`.
-  - Source URL must be public or presigned and unexpired.
-  - Supports filename override, upload type, avatar user ID, additional fields, and simplify.
-- `Upload to Object Storage`: uploads n8n binary data to a presigned `PUT` URL.
-  - Compatible with S3-style presigned URLs, including DigitalOcean Spaces.
-  - Supports optional content type override and metadata output.
-
-## Usage Patterns
-
-### Pattern: S3/Spaces object URL into Discourse upload
-
-1. Generate a presigned or public object URL for a file.
-2. In n8n, use `Discourse Extended -> Upload -> Create From Source URL`.
-3. Set `Source URL` to that object URL.
-4. Optional: set `Original Filename`, `Type`, and `Synchronous`.
-
-### Pattern: n8n binary to DigitalOcean Spaces
-
-1. Generate a presigned `PUT` URL for your Spaces object key.
-2. In n8n, use `Discourse Extended -> Upload -> Upload to Object Storage`.
-3. Map `Input Data Field Name` to your binary field (default `data`).
-4. Set `Presigned PUT URL` and optional `Content Type`.
-
-## Compatibility
-
-- Uses n8n nodes API version `1` (`package.json -> n8n.n8nNodesApiVersion`).
-- Intended for self-hosted n8n with community packages enabled.
-- Install/load behavior can be affected by:
-  - `N8N_COMMUNITY_PACKAGES_ENABLED`
-  - `N8N_COMMUNITY_PACKAGES_PREVENT_LOADING`
-  - `N8N_CUSTOM_EXTENSIONS`
-
-## Troubleshooting
-
-- **Node not visible after install**
-  - Restart n8n.
-  - Verify you searched for node name `Discourse Extended` (not npm package name).
-  - Confirm community packages are enabled in your n8n environment variables.
-- **`Create` upload fails with missing binary**
-  - Confirm the binary field exists and `Input Data Field Name` matches it.
-- **`Create`/`Create From Source URL` avatar upload fails**
-  - Provide `User ID` when `Type = Avatar`.
-- **`Create From Source URL` fails**
-  - Confirm URL is accessible and not expired.
-- **`Upload to Object Storage` fails**
-  - Confirm URL is presigned for `PUT`, not expired, and signed headers match request headers.
-
-## Implemented So Far
-
-- Added `Upload -> Create From Source URL`.
-- Added `Upload -> Upload to Object Storage` for presigned `PUT` uploads.
-- Added support for S3-compatible presigned workflows (including DigitalOcean Spaces).
-- Kept existing `Upload -> Create` for direct multipart upload to Discourse.
-- Topic operations continue to support ID/URL selectors and simplified outputs where applicable.
-
-## Release Policy
-
-- This project has not yet had a public production release.
-- The first public GitHub release will be `v0.1.0`.
-- Semantic versioning cadence starts after `v0.1.0`.
-
-## Docs Maintenance Checklist
-
-During development and release prep:
-
-- Verify operation list in README matches:
-  - `nodes/Discourse/actions/topic/index.ts`
-  - `nodes/Discourse/actions/upload/index.ts`
-- Verify endpoint references still exist in Discourse OpenAPI.
-- Verify install instructions still match current n8n docs.
-- Once public releases begin, keep changelog entries aligned with published release tags.
-
-## Development
+Follow logs:
 
 ```bash
-npm install
+uv run --no-editable discoflow logs n8n --follow
+uv run --no-editable discoflow logs watch --follow
+```
+
+## Development Standards
+
+- Use `uv run --no-editable discoflow ...` as the primary local interface.
+- Do not rely on `UV_NO_EDITABLE` exports alone; prefer explicit `--no-editable` command usage.
+- Run commands from repository root.
+- Keep documentation synchronized with behavior changes.
+- CI enforces node README parity for selected high-risk operation details; keep docs and implementation in the same change.
+- If Discourse node functionality changes, update:
+  - `packages/n8n-nodes-discourse/README.md`
+  - `discourse-extended-skills.csv` (maintain exactly one row per `resource.operation` action key)
+  - `docs/local-dev.md` if setup/test behavior changes
+
+## Documentation Map (Single Source of Truth Model)
+
+- Root `README.md` (this file): mission, vision, architecture, contributor orientation.
+- [`docs/local-dev.md`](docs/local-dev.md): operational local setup/testing workflow.
+- [`packages/n8n-nodes-discourse/README.md`](packages/n8n-nodes-discourse/README.md): node functionality, credentials, operations, API behavior.
+- [`discourse-extended-skills.csv`](discourse-extended-skills.csv): skill catalog dataset aligned 1:1 with Discourse Extended action keys.
+
+## Quality Gates
+
+Python tooling:
+
+```bash
+UV_NO_EDITABLE=1 uv sync --dev --reinstall-package discoflow-cli
+uv run --no-editable pytest
+```
+
+Node package:
+
+```bash
+cd packages/n8n-nodes-discourse
 npm run lint
 npm run build
-npm run dev
 ```
 
-## Resources
+Documentation parity (enforced in CI):
 
-- n8n community node installation:
-  - https://docs.n8n.io/integrations/community-nodes/installation/
-- n8n manual install:
-  - https://docs.n8n.io/integrations/community-nodes/installation/manual-install/
-- n8n nodes environment variables:
-  - https://docs.n8n.io/hosting/configuration/environment-variables/nodes/
-- n8n custom extensions location:
-  - https://docs.n8n.io/hosting/configuration/configuration-examples/custom-nodes-location/
-- n8n built-in Discourse node docs:
-  - https://docs.n8n.io/integrations/builtin/app-nodes/n8n-nodes-base.discourse/
-- Discourse API docs:
-  - https://docs.discourse.org/
-  - https://raw.githubusercontent.com/discourse/discourse_api_docs/main/openapi.json
-- DigitalOcean Spaces API reference:
-  - https://docs.digitalocean.com/reference/api/spaces/
+```bash
+grep -Fq 'Supports `Return All`, `Limit`, `Before`, `Page`, optional ordering fields (`Order`, `Ascending`, `Desc`), and `Simplify`.' packages/n8n-nodes-discourse/README.md
+grep -Fq 'optional additional fields: `Auto Track`, `Created At`, `Embed URL`, and `External ID`.' packages/n8n-nodes-discourse/README.md
+grep -Fq -- '- `Create`: creates a storage key via `POST /discourse-ai/ai-bot/artifact-key-values/{artifact_id}`.' packages/n8n-nodes-discourse/README.md
+grep -Fq -- '- `Update`: updates a storage key via `POST /discourse-ai/ai-bot/artifact-key-values/{artifact_id}`.' packages/n8n-nodes-discourse/README.md
+```
+
+## Status
+
+Pre-release and under active development.
+
+## License
+
+DiscoFlow is released under the MIT License. See [`LICENSE.md`](LICENSE.md).

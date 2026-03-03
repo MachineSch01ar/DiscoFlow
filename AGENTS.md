@@ -2,6 +2,8 @@ Always use the n8nDocs MCP server to search documentation, read node properties,
 
 When working with the Discourse JSON REST API, use your web search tool to search the offical Discourse docs (https://docs.discourse.org), the Discourse community (https://meta.discourse.org), or Discourse's open-source GitHub repo.
 
-The point of this repo is to create programmatic n8n nodes to enable comprehensive interaction with a Discourse instance. 
+The node package README at `packages/n8n-nodes-discourse/README.md` must always be up-to-date. Whenever functionality is added, removed, or changed in the Discourse node, update that README accordingly. It must contain a complete feature description for the node (an explanation of each feature/functionality it has).
 
-The README.md must always be up-to-date. Whenever a functionality is added, removed, or changed to the Discourse node then the README.md must be updated accordingly!
+The skills catalog CSV at `discourse-extended-skills.csv` is required documentation and must stay in sync with the Discourse Extended action surface. Whenever a node action is added, removed, renamed, or behaviorally changed, update this CSV in the same change.
+
+The CSV must maintain exactly one row per Discourse Extended action key using the `resource.operation` convention from `packages/n8n-nodes-discourse/nodes/Discourse/actions/*/index.ts` (for example `topic.search`).

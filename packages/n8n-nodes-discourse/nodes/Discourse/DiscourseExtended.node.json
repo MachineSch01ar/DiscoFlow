@@ -1,0 +1,63 @@
+{
+	"node": "@machinesch01ar/n8n-nodes-discourse",
+	"nodeVersion": "1.0",
+	"codexVersion": "1.0",
+	"categories": ["Development", "Communication"],
+	"resources": {
+		"credentialDocumentation": [
+			{
+				"url": "https://docs.discourse.org/"
+			},
+			{
+				"url": "https://elevenlabs.io/docs/api-reference/overview"
+			},
+			{
+				"url": "https://docs.digitalocean.com/products/spaces/reference/s3-api/"
+			}
+		],
+		"primaryDocumentation": [
+			{
+				"url": "https://docs.discourse.org/"
+			},
+			{
+				"url": "https://www.rubydoc.info/gems/discourse_api/DiscourseApi/API/Categories"
+			},
+			{
+				"url": "https://www.rubydoc.info/gems/discourse_api/DiscourseApi/API/PrivateMessages"
+			},
+			{
+				"url": "https://www.rubydoc.info/gems/discourse_api/DiscourseApi/API/Posts"
+			},
+			{
+				"url": "https://www.rubydoc.info/gems/discourse_api/DiscourseApi/API/PostActions"
+			},
+			{
+				"url": "https://meta.discourse.org/t/retrieving-post-raw-content/115094"
+			},
+			{
+				"url": "https://elevenlabs.io/docs/api-reference/models/get-all"
+			},
+			{
+				"url": "https://elevenlabs.io/docs/api-reference/text-to-speech/convert"
+			},
+			{
+				"url": "https://elevenlabs.io/docs/api-reference/text-to-speech/convert-with-timestamps"
+			},
+			{
+				"url": "https://meta.discourse.org/t/data-explorer-plugin/32566"
+			},
+			{
+				"url": "https://meta.discourse.org/t/discourse-ai-web-artifacts/339972"
+			},
+			{
+				"url": "https://meta.discourse.org/t/ai-artifact-user-storage/369822"
+			},
+			{
+				"url": "https://github.com/discourse/discourse/pull/34193"
+			},
+			{
+				"url": "https://docs.digitalocean.com/products/spaces/reference/s3-api/"
+			}
+		]
+	}
+}

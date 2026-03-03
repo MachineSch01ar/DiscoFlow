@@ -1,0 +1,2436 @@
+"skill_key","enabled","scope","priority","name","description_short","catalog_line","tags_json","instructions_md","resources_json","version","source_sha","updated_at"
+"aiArtifact.create","true","discourse-extended","80","AI Artifact - Create","Use this skill when you need to create an AI artifact via Discourse Extended.","aiArtifact.create: Use this skill when you need to create an AI artifact via Discourse Extended.","[""discourse-extended"",""aiArtifact"",""create"",""write""]","# aiArtifact.create
+
+## When to use
+Use this skill when the workflow needs to create an AI artifact through the Discourse Extended node in a deterministic way.
+
+## When not to use
+- Do not use this skill for unrelated resources or cross-resource side effects not represented by this operation.
+- Do not use this skill when required identifiers are missing or ambiguous.
+- Do not bypass higher-level workflow guardrails for permission, approval, or validation.
+
+## Required inputs
+- Valid `Discourse API (Discourse Extended)` credentials in n8n.
+- Node parameters for Resource: AI Artifact and Operation: create configured with required fields.
+
+## Optional inputs
+- Optional filtering, pagination, simplify/output controls as exposed by the action.
+- Optional metadata and additional fields supported by the Discourse endpoint for this action.
+
+## Execution behavior
+This skill is a thin operational wrapper around Discourse Extended action aiArtifact.create (Create). It is intended to create an AI artifact while preserving n8n workflow-level orchestration and error handling. This action mutates Discourse state and should be used when the workflow explicitly needs to create/update/set entities.
+
+## Output contract
+- Returns JSON items compatible with downstream n8n nodes.
+- Item count may be one or many depending on operation semantics and pagination settings.
+- Error surfaces should include actionable context for retry or user clarification paths.
+
+## Failure handling
+- Validate required identifiers and payload fields before calling this action.
+- On API errors, capture status/message and return structured error data for the workflow to branch on.
+- Prefer deterministic retries only for transient errors; avoid blind retries on validation/auth failures.
+
+## Safety and guardrails
+- Scope credentials and permissions to the minimum needed for this action.
+- Keep operation-specific validation in workflow logic before execution.
+- Keep the skill aligned with `packages/n8n-nodes-discourse/README.md` whenever behavior changes.
+
+## Related Discourse Extended operation
+- Resource: AI Artifact
+- Operation: Create
+- Internal key: aiArtifact.create
+- Action label: Create an AI artifact","[]","git-bfac806","bfac8060378f8c2d678bfd480eab771ed890c8a8","2026-03-03T20:00:47.985Z"
+"aiArtifact.delete","true","discourse-extended","40","AI Artifact - Delete","Use this skill when you need to delete an AI artifact via Discourse Extended.","aiArtifact.delete: Use this skill when you need to delete an AI artifact via Discourse Extended.","[""discourse-extended"",""aiArtifact"",""delete"",""destructive"",""removal""]","# aiArtifact.delete
+
+## When to use
+Use this skill when the workflow needs to delete an AI artifact through the Discourse Extended node in a deterministic way.
+
+## When not to use
+- Do not use this skill for unrelated resources or cross-resource side effects not represented by this operation.
+- Do not use this skill when required identifiers are missing or ambiguous.
+- Do not bypass higher-level workflow guardrails for permission, approval, or validation.
+
+## Required inputs
+- Valid `Discourse API (Discourse Extended)` credentials in n8n.
+- Node parameters for Resource: AI Artifact and Operation: delete configured with required fields.
+- Explicit target ID/key to avoid accidental destructive operations.
+
+## Optional inputs
+- Optional filtering, pagination, simplify/output controls as exposed by the action.
+- Optional metadata and additional fields supported by the Discourse endpoint for this action.
+
+## Execution behavior
+This skill is a thin operational wrapper around Discourse Extended action aiArtifact.delete (Delete). It is intended to delete an AI artifact while preserving n8n workflow-level orchestration and error handling. This action is destructive/removal-oriented and should be gated by strict workflow guardrails.
+
+## Output contract
+- Returns JSON items compatible with downstream n8n nodes.
+- Item count may be one or many depending on operation semantics and pagination settings.
+- Error surfaces should include actionable context for retry or user clarification paths.
+
+## Failure handling
+- Validate required identifiers and payload fields before calling this action.
+- On API errors, capture status/message and return structured error data for the workflow to branch on.
+- Prefer deterministic retries only for transient errors; avoid blind retries on validation/auth failures.
+
+## Safety and guardrails
+- Treat as high-risk: require explicit user/workflow intent before execution.
+- Prefer ID-based targeting over ambiguous text lookups.
+- Log actor, target, and reason for auditability.
+
+## Related Discourse Extended operation
+- Resource: AI Artifact
+- Operation: Delete
+- Internal key: aiArtifact.delete
+- Action label: Delete an AI artifact","[]","git-bfac806","bfac8060378f8c2d678bfd480eab771ed890c8a8","2026-03-03T20:00:47.985Z"
+"aiArtifact.get","true","discourse-extended","100","AI Artifact - Get","Use this skill when you need to get an AI artifact via Discourse Extended.","aiArtifact.get: Use this skill when you need to get an AI artifact via Discourse Extended.","[""discourse-extended"",""aiArtifact"",""get"",""read""]","# aiArtifact.get
+
+## When to use
+Use this skill when the workflow needs to get an AI artifact through the Discourse Extended node in a deterministic way.
+
+## When not to use
+- Do not use this skill for unrelated resources or cross-resource side effects not represented by this operation.
+- Do not use this skill when required identifiers are missing or ambiguous.
+- Do not bypass higher-level workflow guardrails for permission, approval, or validation.
+
+## Required inputs
+- Valid `Discourse API (Discourse Extended)` credentials in n8n.
+- Node parameters for Resource: AI Artifact and Operation: get configured with required fields.
+
+## Optional inputs
+- Optional filtering, pagination, simplify/output controls as exposed by the action.
+- Optional metadata and additional fields supported by the Discourse endpoint for this action.
+
+## Execution behavior
+This skill is a thin operational wrapper around Discourse Extended action aiArtifact.get (Get). It is intended to get an AI artifact while preserving n8n workflow-level orchestration and error handling. This action is retrieval-oriented and should not mutate Discourse state.
+
+## Output contract
+- Returns JSON items compatible with downstream n8n nodes.
+- Item count may be one or many depending on operation semantics and pagination settings.
+- Error surfaces should include actionable context for retry or user clarification paths.
+
+## Failure handling
+- Validate required identifiers and payload fields before calling this action.
+- On API errors, capture status/message and return structured error data for the workflow to branch on.
+- Prefer deterministic retries only for transient errors; avoid blind retries on validation/auth failures.
+
+## Safety and guardrails
+- Scope credentials and permissions to the minimum needed for this action.
+- Keep operation-specific validation in workflow logic before execution.
+- Keep the skill aligned with `packages/n8n-nodes-discourse/README.md` whenever behavior changes.
+
+## Related Discourse Extended operation
+- Resource: AI Artifact
+- Operation: Get
+- Internal key: aiArtifact.get
+- Action label: Get an AI artifact","[]","git-bfac806","bfac8060378f8c2d678bfd480eab771ed890c8a8","2026-03-03T20:00:47.985Z"
+"aiArtifact.getMany","true","discourse-extended","100","AI Artifact - Get Many","Use this skill when you need to get many AI artifacts via Discourse Extended.","aiArtifact.getMany: Use this skill when you need to get many AI artifacts via Discourse Extended.","[""discourse-extended"",""aiArtifact"",""getMany"",""get_many"",""read"",""list""]","# aiArtifact.getMany
+
+## When to use
+Use this skill when the workflow needs to get many AI artifacts through the Discourse Extended node in a deterministic way.
+
+## When not to use
+- Do not use this skill for unrelated resources or cross-resource side effects not represented by this operation.
+- Do not use this skill when required identifiers are missing or ambiguous.
+- Do not bypass higher-level workflow guardrails for permission, approval, or validation.
+
+## Required inputs
+- Valid `Discourse API (Discourse Extended)` credentials in n8n.
+- Node parameters for Resource: AI Artifact and Operation: getMany configured with required fields.
+
+## Optional inputs
+- Optional filtering, pagination, simplify/output controls as exposed by the action.
+- Optional metadata and additional fields supported by the Discourse endpoint for this action.
+- `Return All`/`Limit` controls for result volume management.
+
+## Execution behavior
+This skill is a thin operational wrapper around Discourse Extended action aiArtifact.getMany (Get Many). It is intended to get many AI artifacts while preserving n8n workflow-level orchestration and error handling. This action is retrieval-oriented and should not mutate Discourse state.
+
+## Output contract
+- Returns JSON items compatible with downstream n8n nodes.
+- Item count may be one or many depending on operation semantics and pagination settings.
+- Error surfaces should include actionable context for retry or user clarification paths.
+- Retrieval list operations can return large payloads; use limits/simplification where possible.
+
+## Failure handling
+- Validate required identifiers and payload fields before calling this action.
+- On API errors, capture status/message and return structured error data for the workflow to branch on.
+- Prefer deterministic retries only for transient errors; avoid blind retries on validation/auth failures.
+
+## Safety and guardrails
+- Scope credentials and permissions to the minimum needed for this action.
+- Keep operation-specific validation in workflow logic before execution.
+- Keep the skill aligned with `packages/n8n-nodes-discourse/README.md` whenever behavior changes.
+
+## Related Discourse Extended operation
+- Resource: AI Artifact
+- Operation: Get Many
+- Internal key: aiArtifact.getMany
+- Action label: Get many AI artifacts","[]","git-bfac806","bfac8060378f8c2d678bfd480eab771ed890c8a8","2026-03-03T20:00:47.985Z"
+"aiArtifact.update","true","discourse-extended","80","AI Artifact - Update","Use this skill when you need to update an AI artifact via Discourse Extended.","aiArtifact.update: Use this skill when you need to update an AI artifact via Discourse Extended.","[""discourse-extended"",""aiArtifact"",""update"",""write""]","# aiArtifact.update
+
+## When to use
+Use this skill when the workflow needs to update an AI artifact through the Discourse Extended node in a deterministic way.
+
+## When not to use
+- Do not use this skill for unrelated resources or cross-resource side effects not represented by this operation.
+- Do not use this skill when required identifiers are missing or ambiguous.
+- Do not bypass higher-level workflow guardrails for permission, approval, or validation.
+
+## Required inputs
+- Valid `Discourse API (Discourse Extended)` credentials in n8n.
+- Node parameters for Resource: AI Artifact and Operation: update configured with required fields.
+
+## Optional inputs
+- Optional filtering, pagination, simplify/output controls as exposed by the action.
+- Optional metadata and additional fields supported by the Discourse endpoint for this action.
+
+## Execution behavior
+This skill is a thin operational wrapper around Discourse Extended action aiArtifact.update (Update). It is intended to update an AI artifact while preserving n8n workflow-level orchestration and error handling. This action mutates Discourse state and should be used when the workflow explicitly needs to create/update/set entities.
+
+## Output contract
+- Returns JSON items compatible with downstream n8n nodes.
+- Item count may be one or many depending on operation semantics and pagination settings.
+- Error surfaces should include actionable context for retry or user clarification paths.
+
+## Failure handling
+- Validate required identifiers and payload fields before calling this action.
+- On API errors, capture status/message and return structured error data for the workflow to branch on.
+- Prefer deterministic retries only for transient errors; avoid blind retries on validation/auth failures.
+
+## Safety and guardrails
+- Scope credentials and permissions to the minimum needed for this action.
+- Keep operation-specific validation in workflow logic before execution.
+- Keep the skill aligned with `packages/n8n-nodes-discourse/README.md` whenever behavior changes.
+
+## Related Discourse Extended operation
+- Resource: AI Artifact
+- Operation: Update
+- Internal key: aiArtifact.update
+- Action label: Update an AI artifact","[]","git-bfac806","bfac8060378f8c2d678bfd480eab771ed890c8a8","2026-03-03T20:00:47.985Z"
+"aiArtifactStorage.create","true","discourse-extended","80","AI Artifact Storage - Create","Use this skill when you need to create an AI artifact storage entry via Discourse Extended.","aiArtifactStorage.create: Use this skill when you need to create an AI artifact storage entry via Discourse Extended.","[""discourse-extended"",""aiArtifactStorage"",""create"",""write""]","# aiArtifactStorage.create
+
+## When to use
+Use this skill when the workflow needs to create an AI artifact storage entry through the Discourse Extended node in a deterministic way.
+
+## When not to use
+- Do not use this skill for unrelated resources or cross-resource side effects not represented by this operation.
+- Do not use this skill when required identifiers are missing or ambiguous.
+- Do not bypass higher-level workflow guardrails for permission, approval, or validation.
+
+## Required inputs
+- Valid `Discourse API (Discourse Extended)` credentials in n8n.
+- Node parameters for Resource: AI Artifact Storage and Operation: create configured with required fields.
+
+## Optional inputs
+- Optional filtering, pagination, simplify/output controls as exposed by the action.
+- Optional metadata and additional fields supported by the Discourse endpoint for this action.
+
+## Execution behavior
+This skill is a thin operational wrapper around Discourse Extended action aiArtifactStorage.create (Create). It is intended to create an AI artifact storage entry while preserving n8n workflow-level orchestration and error handling. This action mutates Discourse state and should be used when the workflow explicitly needs to create/update/set entities.
+
+## Output contract
+- Returns JSON items compatible with downstream n8n nodes.
+- Item count may be one or many depending on operation semantics and pagination settings.
+- Error surfaces should include actionable context for retry or user clarification paths.
+
+## Failure handling
+- Validate required identifiers and payload fields before calling this action.
+- On API errors, capture status/message and return structured error data for the workflow to branch on.
+- Prefer deterministic retries only for transient errors; avoid blind retries on validation/auth failures.
+
+## Safety and guardrails
+- Scope credentials and permissions to the minimum needed for this action.
+- Keep operation-specific validation in workflow logic before execution.
+- Keep the skill aligned with `packages/n8n-nodes-discourse/README.md` whenever behavior changes.
+
+## Related Discourse Extended operation
+- Resource: AI Artifact Storage
+- Operation: Create
+- Internal key: aiArtifactStorage.create
+- Action label: Create an AI artifact storage entry","[]","git-bfac806","bfac8060378f8c2d678bfd480eab771ed890c8a8","2026-03-03T20:00:47.985Z"
+"aiArtifactStorage.delete","true","discourse-extended","40","AI Artifact Storage - Delete","Use this skill when you need to delete an AI artifact storage key via Discourse Extended.","aiArtifactStorage.delete: Use this skill when you need to delete an AI artifact storage key via Discourse Extended.","[""discourse-extended"",""aiArtifactStorage"",""delete"",""destructive"",""removal""]","# aiArtifactStorage.delete
+
+## When to use
+Use this skill when the workflow needs to delete an AI artifact storage key through the Discourse Extended node in a deterministic way.
+
+## When not to use
+- Do not use this skill for unrelated resources or cross-resource side effects not represented by this operation.
+- Do not use this skill when required identifiers are missing or ambiguous.
+- Do not bypass higher-level workflow guardrails for permission, approval, or validation.
+
+## Required inputs
+- Valid `Discourse API (Discourse Extended)` credentials in n8n.
+- Node parameters for Resource: AI Artifact Storage and Operation: delete configured with required fields.
+- Explicit target ID/key to avoid accidental destructive operations.
+
+## Optional inputs
+- Optional filtering, pagination, simplify/output controls as exposed by the action.
+- Optional metadata and additional fields supported by the Discourse endpoint for this action.
+
+## Execution behavior
+This skill is a thin operational wrapper around Discourse Extended action aiArtifactStorage.delete (Delete). It is intended to delete an AI artifact storage key while preserving n8n workflow-level orchestration and error handling. This action is destructive/removal-oriented and should be gated by strict workflow guardrails.
+
+## Output contract
+- Returns JSON items compatible with downstream n8n nodes.
+- Item count may be one or many depending on operation semantics and pagination settings.
+- Error surfaces should include actionable context for retry or user clarification paths.
+
+## Failure handling
+- Validate required identifiers and payload fields before calling this action.
+- On API errors, capture status/message and return structured error data for the workflow to branch on.
+- Prefer deterministic retries only for transient errors; avoid blind retries on validation/auth failures.
+
+## Safety and guardrails
+- Treat as high-risk: require explicit user/workflow intent before execution.
+- Prefer ID-based targeting over ambiguous text lookups.
+- Log actor, target, and reason for auditability.
+
+## Related Discourse Extended operation
+- Resource: AI Artifact Storage
+- Operation: Delete
+- Internal key: aiArtifactStorage.delete
+- Action label: Delete an AI artifact storage key","[]","git-bfac806","bfac8060378f8c2d678bfd480eab771ed890c8a8","2026-03-03T20:00:47.985Z"
+"aiArtifactStorage.get","true","discourse-extended","100","AI Artifact Storage - Get","Use this skill when you need to get an AI artifact storage entry via Discourse Extended.","aiArtifactStorage.get: Use this skill when you need to get an AI artifact storage entry via Discourse Extended.","[""discourse-extended"",""aiArtifactStorage"",""get"",""read""]","# aiArtifactStorage.get
+
+## When to use
+Use this skill when the workflow needs to get an AI artifact storage entry through the Discourse Extended node in a deterministic way.
+
+## When not to use
+- Do not use this skill for unrelated resources or cross-resource side effects not represented by this operation.
+- Do not use this skill when required identifiers are missing or ambiguous.
+- Do not bypass higher-level workflow guardrails for permission, approval, or validation.
+
+## Required inputs
+- Valid `Discourse API (Discourse Extended)` credentials in n8n.
+- Node parameters for Resource: AI Artifact Storage and Operation: get configured with required fields.
+
+## Optional inputs
+- Optional filtering, pagination, simplify/output controls as exposed by the action.
+- Optional metadata and additional fields supported by the Discourse endpoint for this action.
+
+## Execution behavior
+This skill is a thin operational wrapper around Discourse Extended action aiArtifactStorage.get (Get). It is intended to get an AI artifact storage entry while preserving n8n workflow-level orchestration and error handling. This action is retrieval-oriented and should not mutate Discourse state.
+
+## Output contract
+- Returns JSON items compatible with downstream n8n nodes.
+- Item count may be one or many depending on operation semantics and pagination settings.
+- Error surfaces should include actionable context for retry or user clarification paths.
+
+## Failure handling
+- Validate required identifiers and payload fields before calling this action.
+- On API errors, capture status/message and return structured error data for the workflow to branch on.
+- Prefer deterministic retries only for transient errors; avoid blind retries on validation/auth failures.
+
+## Safety and guardrails
+- Scope credentials and permissions to the minimum needed for this action.
+- Keep operation-specific validation in workflow logic before execution.
+- Keep the skill aligned with `packages/n8n-nodes-discourse/README.md` whenever behavior changes.
+
+## Related Discourse Extended operation
+- Resource: AI Artifact Storage
+- Operation: Get
+- Internal key: aiArtifactStorage.get
+- Action label: Get an AI artifact storage entry","[]","git-bfac806","bfac8060378f8c2d678bfd480eab771ed890c8a8","2026-03-03T20:00:47.985Z"
+"aiArtifactStorage.getMany","true","discourse-extended","100","AI Artifact Storage - Get Many","Use this skill when you need to get many AI artifact storage entries via Discourse Extended.","aiArtifactStorage.getMany: Use this skill when you need to get many AI artifact storage entries via Discourse Extended.","[""discourse-extended"",""aiArtifactStorage"",""getMany"",""get_many"",""read"",""list""]","# aiArtifactStorage.getMany
+
+## When to use
+Use this skill when the workflow needs to get many AI artifact storage entries through the Discourse Extended node in a deterministic way.
+
+## When not to use
+- Do not use this skill for unrelated resources or cross-resource side effects not represented by this operation.
+- Do not use this skill when required identifiers are missing or ambiguous.
+- Do not bypass higher-level workflow guardrails for permission, approval, or validation.
+
+## Required inputs
+- Valid `Discourse API (Discourse Extended)` credentials in n8n.
+- Node parameters for Resource: AI Artifact Storage and Operation: getMany configured with required fields.
+
+## Optional inputs
+- Optional filtering, pagination, simplify/output controls as exposed by the action.
+- Optional metadata and additional fields supported by the Discourse endpoint for this action.
+- `Return All`/`Limit` controls for result volume management.
+
+## Execution behavior
+This skill is a thin operational wrapper around Discourse Extended action aiArtifactStorage.getMany (Get Many). It is intended to get many AI artifact storage entries while preserving n8n workflow-level orchestration and error handling. This action is retrieval-oriented and should not mutate Discourse state.
+
+## Output contract
+- Returns JSON items compatible with downstream n8n nodes.
+- Item count may be one or many depending on operation semantics and pagination settings.
+- Error surfaces should include actionable context for retry or user clarification paths.
+- Retrieval list operations can return large payloads; use limits/simplification where possible.
+
+## Failure handling
+- Validate required identifiers and payload fields before calling this action.
+- On API errors, capture status/message and return structured error data for the workflow to branch on.
+- Prefer deterministic retries only for transient errors; avoid blind retries on validation/auth failures.
+
+## Safety and guardrails
+- Scope credentials and permissions to the minimum needed for this action.
+- Keep operation-specific validation in workflow logic before execution.
+- Keep the skill aligned with `packages/n8n-nodes-discourse/README.md` whenever behavior changes.
+
+## Related Discourse Extended operation
+- Resource: AI Artifact Storage
+- Operation: Get Many
+- Internal key: aiArtifactStorage.getMany
+- Action label: Get many AI artifact storage entries","[]","git-bfac806","bfac8060378f8c2d678bfd480eab771ed890c8a8","2026-03-03T20:00:47.985Z"
+"aiArtifactStorage.set","true","discourse-extended","80","AI Artifact Storage - Set","Use this skill when you need to set an AI artifact storage key via Discourse Extended.","aiArtifactStorage.set: Use this skill when you need to set an AI artifact storage key via Discourse Extended.","[""discourse-extended"",""aiArtifactStorage"",""set"",""write""]","# aiArtifactStorage.set
+
+## When to use
+Use this skill when the workflow needs to set an AI artifact storage key through the Discourse Extended node in a deterministic way.
+
+## When not to use
+- Do not use this skill for unrelated resources or cross-resource side effects not represented by this operation.
+- Do not use this skill when required identifiers are missing or ambiguous.
+- Do not bypass higher-level workflow guardrails for permission, approval, or validation.
+
+## Required inputs
+- Valid `Discourse API (Discourse Extended)` credentials in n8n.
+- Node parameters for Resource: AI Artifact Storage and Operation: set configured with required fields.
+
+## Optional inputs
+- Optional filtering, pagination, simplify/output controls as exposed by the action.
+- Optional metadata and additional fields supported by the Discourse endpoint for this action.
+
+## Execution behavior
+This skill is a thin operational wrapper around Discourse Extended action aiArtifactStorage.set (Set). It is intended to set an AI artifact storage key while preserving n8n workflow-level orchestration and error handling. This action mutates Discourse state and should be used when the workflow explicitly needs to create/update/set entities.
+
+## Output contract
+- Returns JSON items compatible with downstream n8n nodes.
+- Item count may be one or many depending on operation semantics and pagination settings.
+- Error surfaces should include actionable context for retry or user clarification paths.
+
+## Failure handling
+- Validate required identifiers and payload fields before calling this action.
+- On API errors, capture status/message and return structured error data for the workflow to branch on.
+- Prefer deterministic retries only for transient errors; avoid blind retries on validation/auth failures.
+
+## Safety and guardrails
+- Scope credentials and permissions to the minimum needed for this action.
+- Keep operation-specific validation in workflow logic before execution.
+- Keep the skill aligned with `packages/n8n-nodes-discourse/README.md` whenever behavior changes.
+
+## Related Discourse Extended operation
+- Resource: AI Artifact Storage
+- Operation: Set
+- Internal key: aiArtifactStorage.set
+- Action label: Set an AI artifact storage key","[]","git-bfac806","bfac8060378f8c2d678bfd480eab771ed890c8a8","2026-03-03T20:00:47.985Z"
+"aiArtifactStorage.update","true","discourse-extended","80","AI Artifact Storage - Update","Use this skill when you need to update an AI artifact storage entry via Discourse Extended.","aiArtifactStorage.update: Use this skill when you need to update an AI artifact storage entry via Discourse Extended.","[""discourse-extended"",""aiArtifactStorage"",""update"",""write""]","# aiArtifactStorage.update
+
+## When to use
+Use this skill when the workflow needs to update an AI artifact storage entry through the Discourse Extended node in a deterministic way.
+
+## When not to use
+- Do not use this skill for unrelated resources or cross-resource side effects not represented by this operation.
+- Do not use this skill when required identifiers are missing or ambiguous.
+- Do not bypass higher-level workflow guardrails for permission, approval, or validation.
+
+## Required inputs
+- Valid `Discourse API (Discourse Extended)` credentials in n8n.
+- Node parameters for Resource: AI Artifact Storage and Operation: update configured with required fields.
+
+## Optional inputs
+- Optional filtering, pagination, simplify/output controls as exposed by the action.
+- Optional metadata and additional fields supported by the Discourse endpoint for this action.
+
+## Execution behavior
+This skill is a thin operational wrapper around Discourse Extended action aiArtifactStorage.update (Update). It is intended to update an AI artifact storage entry while preserving n8n workflow-level orchestration and error handling. This action mutates Discourse state and should be used when the workflow explicitly needs to create/update/set entities.
+
+## Output contract
+- Returns JSON items compatible with downstream n8n nodes.
+- Item count may be one or many depending on operation semantics and pagination settings.
+- Error surfaces should include actionable context for retry or user clarification paths.
+
+## Failure handling
+- Validate required identifiers and payload fields before calling this action.
+- On API errors, capture status/message and return structured error data for the workflow to branch on.
+- Prefer deterministic retries only for transient errors; avoid blind retries on validation/auth failures.
+
+## Safety and guardrails
+- Scope credentials and permissions to the minimum needed for this action.
+- Keep operation-specific validation in workflow logic before execution.
+- Keep the skill aligned with `packages/n8n-nodes-discourse/README.md` whenever behavior changes.
+
+## Related Discourse Extended operation
+- Resource: AI Artifact Storage
+- Operation: Update
+- Internal key: aiArtifactStorage.update
+- Action label: Update an AI artifact storage entry","[]","git-bfac806","bfac8060378f8c2d678bfd480eab771ed890c8a8","2026-03-03T20:00:47.985Z"
+"category.create","true","discourse-extended","80","Category - Create","Use this skill when you need to create a category via Discourse Extended.","category.create: Use this skill when you need to create a category via Discourse Extended.","[""discourse-extended"",""category"",""create"",""write""]","# category.create
+
+## When to use
+Use this skill when the workflow needs to create a category through the Discourse Extended node in a deterministic way.
+
+## When not to use
+- Do not use this skill for unrelated resources or cross-resource side effects not represented by this operation.
+- Do not use this skill when required identifiers are missing or ambiguous.
+- Do not bypass higher-level workflow guardrails for permission, approval, or validation.
+
+## Required inputs
+- Valid `Discourse API (Discourse Extended)` credentials in n8n.
+- Node parameters for Resource: Category and Operation: create configured with required fields.
+
+## Optional inputs
+- Optional filtering, pagination, simplify/output controls as exposed by the action.
+- Optional metadata and additional fields supported by the Discourse endpoint for this action.
+
+## Execution behavior
+This skill is a thin operational wrapper around Discourse Extended action category.create (Create). It is intended to create a category while preserving n8n workflow-level orchestration and error handling. This action mutates Discourse state and should be used when the workflow explicitly needs to create/update/set entities.
+
+## Output contract
+- Returns JSON items compatible with downstream n8n nodes.
+- Item count may be one or many depending on operation semantics and pagination settings.
+- Error surfaces should include actionable context for retry or user clarification paths.
+
+## Failure handling
+- Validate required identifiers and payload fields before calling this action.
+- On API errors, capture status/message and return structured error data for the workflow to branch on.
+- Prefer deterministic retries only for transient errors; avoid blind retries on validation/auth failures.
+
+## Safety and guardrails
+- Scope credentials and permissions to the minimum needed for this action.
+- Keep operation-specific validation in workflow logic before execution.
+- Keep the skill aligned with `packages/n8n-nodes-discourse/README.md` whenever behavior changes.
+
+## Related Discourse Extended operation
+- Resource: Category
+- Operation: Create
+- Internal key: category.create
+- Action label: Create a category","[]","git-bfac806","bfac8060378f8c2d678bfd480eab771ed890c8a8","2026-03-03T20:00:47.985Z"
+"category.delete","true","discourse-extended","40","Category - Delete","Use this skill when you need to delete a category via Discourse Extended.","category.delete: Use this skill when you need to delete a category via Discourse Extended.","[""discourse-extended"",""category"",""delete"",""destructive"",""removal""]","# category.delete
+
+## When to use
+Use this skill when the workflow needs to delete a category through the Discourse Extended node in a deterministic way.
+
+## When not to use
+- Do not use this skill for unrelated resources or cross-resource side effects not represented by this operation.
+- Do not use this skill when required identifiers are missing or ambiguous.
+- Do not bypass higher-level workflow guardrails for permission, approval, or validation.
+
+## Required inputs
+- Valid `Discourse API (Discourse Extended)` credentials in n8n.
+- Node parameters for Resource: Category and Operation: delete configured with required fields.
+- Explicit target ID/key to avoid accidental destructive operations.
+
+## Optional inputs
+- Optional filtering, pagination, simplify/output controls as exposed by the action.
+- Optional metadata and additional fields supported by the Discourse endpoint for this action.
+
+## Execution behavior
+This skill is a thin operational wrapper around Discourse Extended action category.delete (Delete). It is intended to delete a category while preserving n8n workflow-level orchestration and error handling. This action is destructive/removal-oriented and should be gated by strict workflow guardrails.
+
+## Output contract
+- Returns JSON items compatible with downstream n8n nodes.
+- Item count may be one or many depending on operation semantics and pagination settings.
+- Error surfaces should include actionable context for retry or user clarification paths.
+
+## Failure handling
+- Validate required identifiers and payload fields before calling this action.
+- On API errors, capture status/message and return structured error data for the workflow to branch on.
+- Prefer deterministic retries only for transient errors; avoid blind retries on validation/auth failures.
+
+## Safety and guardrails
+- Treat as high-risk: require explicit user/workflow intent before execution.
+- Prefer ID-based targeting over ambiguous text lookups.
+- Log actor, target, and reason for auditability.
+
+## Related Discourse Extended operation
+- Resource: Category
+- Operation: Delete
+- Internal key: category.delete
+- Action label: Delete a category","[]","git-bfac806","bfac8060378f8c2d678bfd480eab771ed890c8a8","2026-03-03T20:00:47.985Z"
+"category.get","true","discourse-extended","100","Category - Get","Use this skill when you need to get a category via Discourse Extended.","category.get: Use this skill when you need to get a category via Discourse Extended.","[""discourse-extended"",""category"",""get"",""read""]","# category.get
+
+## When to use
+Use this skill when the workflow needs to get a category through the Discourse Extended node in a deterministic way.
+
+## When not to use
+- Do not use this skill for unrelated resources or cross-resource side effects not represented by this operation.
+- Do not use this skill when required identifiers are missing or ambiguous.
+- Do not bypass higher-level workflow guardrails for permission, approval, or validation.
+
+## Required inputs
+- Valid `Discourse API (Discourse Extended)` credentials in n8n.
+- Node parameters for Resource: Category and Operation: get configured with required fields.
+
+## Optional inputs
+- Optional filtering, pagination, simplify/output controls as exposed by the action.
+- Optional metadata and additional fields supported by the Discourse endpoint for this action.
+
+## Execution behavior
+This skill is a thin operational wrapper around Discourse Extended action category.get (Get). It is intended to get a category while preserving n8n workflow-level orchestration and error handling. This action is retrieval-oriented and should not mutate Discourse state.
+
+## Output contract
+- Returns JSON items compatible with downstream n8n nodes.
+- Item count may be one or many depending on operation semantics and pagination settings.
+- Error surfaces should include actionable context for retry or user clarification paths.
+
+## Failure handling
+- Validate required identifiers and payload fields before calling this action.
+- On API errors, capture status/message and return structured error data for the workflow to branch on.
+- Prefer deterministic retries only for transient errors; avoid blind retries on validation/auth failures.
+
+## Safety and guardrails
+- Scope credentials and permissions to the minimum needed for this action.
+- Keep operation-specific validation in workflow logic before execution.
+- Keep the skill aligned with `packages/n8n-nodes-discourse/README.md` whenever behavior changes.
+
+## Related Discourse Extended operation
+- Resource: Category
+- Operation: Get
+- Internal key: category.get
+- Action label: Get a category","[]","git-bfac806","bfac8060378f8c2d678bfd480eab771ed890c8a8","2026-03-03T20:00:47.985Z"
+"category.getMany","true","discourse-extended","100","Category - Get Many","Use this skill when you need to get many categories via Discourse Extended.","category.getMany: Use this skill when you need to get many categories via Discourse Extended.","[""discourse-extended"",""category"",""getMany"",""get_many"",""read"",""list""]","# category.getMany
+
+## When to use
+Use this skill when the workflow needs to get many categories through the Discourse Extended node in a deterministic way.
+
+## When not to use
+- Do not use this skill for unrelated resources or cross-resource side effects not represented by this operation.
+- Do not use this skill when required identifiers are missing or ambiguous.
+- Do not bypass higher-level workflow guardrails for permission, approval, or validation.
+
+## Required inputs
+- Valid `Discourse API (Discourse Extended)` credentials in n8n.
+- Node parameters for Resource: Category and Operation: getMany configured with required fields.
+
+## Optional inputs
+- Optional filtering, pagination, simplify/output controls as exposed by the action.
+- Optional metadata and additional fields supported by the Discourse endpoint for this action.
+- `Return All`/`Limit` controls for result volume management.
+
+## Execution behavior
+This skill is a thin operational wrapper around Discourse Extended action category.getMany (Get Many). It is intended to get many categories while preserving n8n workflow-level orchestration and error handling. This action is retrieval-oriented and should not mutate Discourse state.
+
+## Output contract
+- Returns JSON items compatible with downstream n8n nodes.
+- Item count may be one or many depending on operation semantics and pagination settings.
+- Error surfaces should include actionable context for retry or user clarification paths.
+- Retrieval list operations can return large payloads; use limits/simplification where possible.
+
+## Failure handling
+- Validate required identifiers and payload fields before calling this action.
+- On API errors, capture status/message and return structured error data for the workflow to branch on.
+- Prefer deterministic retries only for transient errors; avoid blind retries on validation/auth failures.
+
+## Safety and guardrails
+- Scope credentials and permissions to the minimum needed for this action.
+- Keep operation-specific validation in workflow logic before execution.
+- Keep the skill aligned with `packages/n8n-nodes-discourse/README.md` whenever behavior changes.
+
+## Related Discourse Extended operation
+- Resource: Category
+- Operation: Get Many
+- Internal key: category.getMany
+- Action label: Get many categories","[]","git-bfac806","bfac8060378f8c2d678bfd480eab771ed890c8a8","2026-03-03T20:00:47.985Z"
+"category.update","true","discourse-extended","80","Category - Update","Use this skill when you need to update a category via Discourse Extended.","category.update: Use this skill when you need to update a category via Discourse Extended.","[""discourse-extended"",""category"",""update"",""write""]","# category.update
+
+## When to use
+Use this skill when the workflow needs to update a category through the Discourse Extended node in a deterministic way.
+
+## When not to use
+- Do not use this skill for unrelated resources or cross-resource side effects not represented by this operation.
+- Do not use this skill when required identifiers are missing or ambiguous.
+- Do not bypass higher-level workflow guardrails for permission, approval, or validation.
+
+## Required inputs
+- Valid `Discourse API (Discourse Extended)` credentials in n8n.
+- Node parameters for Resource: Category and Operation: update configured with required fields.
+
+## Optional inputs
+- Optional filtering, pagination, simplify/output controls as exposed by the action.
+- Optional metadata and additional fields supported by the Discourse endpoint for this action.
+
+## Execution behavior
+This skill is a thin operational wrapper around Discourse Extended action category.update (Update). It is intended to update a category while preserving n8n workflow-level orchestration and error handling. This action mutates Discourse state and should be used when the workflow explicitly needs to create/update/set entities.
+
+## Output contract
+- Returns JSON items compatible with downstream n8n nodes.
+- Item count may be one or many depending on operation semantics and pagination settings.
+- Error surfaces should include actionable context for retry or user clarification paths.
+
+## Failure handling
+- Validate required identifiers and payload fields before calling this action.
+- On API errors, capture status/message and return structured error data for the workflow to branch on.
+- Prefer deterministic retries only for transient errors; avoid blind retries on validation/auth failures.
+
+## Safety and guardrails
+- Scope credentials and permissions to the minimum needed for this action.
+- Keep operation-specific validation in workflow logic before execution.
+- Keep the skill aligned with `packages/n8n-nodes-discourse/README.md` whenever behavior changes.
+
+## Related Discourse Extended operation
+- Resource: Category
+- Operation: Update
+- Internal key: category.update
+- Action label: Update a category","[]","git-bfac806","bfac8060378f8c2d678bfd480eab771ed890c8a8","2026-03-03T20:00:47.985Z"
+"dataExplorer.create","true","discourse-extended","80","Data Explorer - Create","Use this skill when you need to create a query via Discourse Extended.","dataExplorer.create: Use this skill when you need to create a query via Discourse Extended.","[""discourse-extended"",""dataExplorer"",""create"",""write"",""data-explorer""]","# dataExplorer.create
+
+## When to use
+Use this skill when the workflow needs to create a query through the Discourse Extended node in a deterministic way.
+
+## When not to use
+- Do not use this skill for unrelated resources or cross-resource side effects not represented by this operation.
+- Do not use this skill when required identifiers are missing or ambiguous.
+- Do not bypass higher-level workflow guardrails for permission, approval, or validation.
+
+## Required inputs
+- Valid `Discourse API (Discourse Extended)` credentials in n8n.
+- Node parameters for Resource: Data Explorer and Operation: create configured with required fields.
+
+## Optional inputs
+- Optional filtering, pagination, simplify/output controls as exposed by the action.
+- Optional metadata and additional fields supported by the Discourse endpoint for this action.
+
+## Execution behavior
+This skill is a thin operational wrapper around Discourse Extended action dataExplorer.create (Create). It is intended to create a query while preserving n8n workflow-level orchestration and error handling. This action mutates Discourse state and should be used when the workflow explicitly needs to create/update/set entities.
+
+## Output contract
+- Returns JSON items compatible with downstream n8n nodes.
+- Item count may be one or many depending on operation semantics and pagination settings.
+- Error surfaces should include actionable context for retry or user clarification paths.
+
+## Failure handling
+- Validate required identifiers and payload fields before calling this action.
+- On API errors, capture status/message and return structured error data for the workflow to branch on.
+- Prefer deterministic retries only for transient errors; avoid blind retries on validation/auth failures.
+
+## Safety and guardrails
+- Scope credentials and permissions to the minimum needed for this action.
+- Keep operation-specific validation in workflow logic before execution.
+- Keep the skill aligned with `packages/n8n-nodes-discourse/README.md` whenever behavior changes.
+
+## Related Discourse Extended operation
+- Resource: Data Explorer
+- Operation: Create
+- Internal key: dataExplorer.create
+- Action label: Create a query","[]","git-bfac806","bfac8060378f8c2d678bfd480eab771ed890c8a8","2026-03-03T20:00:47.985Z"
+"dataExplorer.delete","true","discourse-extended","40","Data Explorer - Delete","Use this skill when you need to delete a query via Discourse Extended.","dataExplorer.delete: Use this skill when you need to delete a query via Discourse Extended.","[""discourse-extended"",""dataExplorer"",""delete"",""destructive"",""removal"",""data-explorer""]","# dataExplorer.delete
+
+## When to use
+Use this skill when the workflow needs to delete a query through the Discourse Extended node in a deterministic way.
+
+## When not to use
+- Do not use this skill for unrelated resources or cross-resource side effects not represented by this operation.
+- Do not use this skill when required identifiers are missing or ambiguous.
+- Do not bypass higher-level workflow guardrails for permission, approval, or validation.
+
+## Required inputs
+- Valid `Discourse API (Discourse Extended)` credentials in n8n.
+- Node parameters for Resource: Data Explorer and Operation: delete configured with required fields.
+- Explicit target ID/key to avoid accidental destructive operations.
+
+## Optional inputs
+- Optional filtering, pagination, simplify/output controls as exposed by the action.
+- Optional metadata and additional fields supported by the Discourse endpoint for this action.
+
+## Execution behavior
+This skill is a thin operational wrapper around Discourse Extended action dataExplorer.delete (Delete). It is intended to delete a query while preserving n8n workflow-level orchestration and error handling. This action is destructive/removal-oriented and should be gated by strict workflow guardrails.
+
+## Output contract
+- Returns JSON items compatible with downstream n8n nodes.
+- Item count may be one or many depending on operation semantics and pagination settings.
+- Error surfaces should include actionable context for retry or user clarification paths.
+
+## Failure handling
+- Validate required identifiers and payload fields before calling this action.
+- On API errors, capture status/message and return structured error data for the workflow to branch on.
+- Prefer deterministic retries only for transient errors; avoid blind retries on validation/auth failures.
+
+## Safety and guardrails
+- Treat as high-risk: require explicit user/workflow intent before execution.
+- Prefer ID-based targeting over ambiguous text lookups.
+- Log actor, target, and reason for auditability.
+
+## Related Discourse Extended operation
+- Resource: Data Explorer
+- Operation: Delete
+- Internal key: dataExplorer.delete
+- Action label: Delete a query","[]","git-bfac806","bfac8060378f8c2d678bfd480eab771ed890c8a8","2026-03-03T20:00:47.985Z"
+"dataExplorer.get","true","discourse-extended","100","Data Explorer - Get","Use this skill when you need to get a query via Discourse Extended.","dataExplorer.get: Use this skill when you need to get a query via Discourse Extended.","[""discourse-extended"",""dataExplorer"",""get"",""read"",""data-explorer""]","# dataExplorer.get
+
+## When to use
+Use this skill when the workflow needs to get a query through the Discourse Extended node in a deterministic way.
+
+## When not to use
+- Do not use this skill for unrelated resources or cross-resource side effects not represented by this operation.
+- Do not use this skill when required identifiers are missing or ambiguous.
+- Do not bypass higher-level workflow guardrails for permission, approval, or validation.
+
+## Required inputs
+- Valid `Discourse API (Discourse Extended)` credentials in n8n.
+- Node parameters for Resource: Data Explorer and Operation: get configured with required fields.
+
+## Optional inputs
+- Optional filtering, pagination, simplify/output controls as exposed by the action.
+- Optional metadata and additional fields supported by the Discourse endpoint for this action.
+
+## Execution behavior
+This skill is a thin operational wrapper around Discourse Extended action dataExplorer.get (Get). It is intended to get a query while preserving n8n workflow-level orchestration and error handling. This action is retrieval-oriented and should not mutate Discourse state.
+
+## Output contract
+- Returns JSON items compatible with downstream n8n nodes.
+- Item count may be one or many depending on operation semantics and pagination settings.
+- Error surfaces should include actionable context for retry or user clarification paths.
+
+## Failure handling
+- Validate required identifiers and payload fields before calling this action.
+- On API errors, capture status/message and return structured error data for the workflow to branch on.
+- Prefer deterministic retries only for transient errors; avoid blind retries on validation/auth failures.
+
+## Safety and guardrails
+- Scope credentials and permissions to the minimum needed for this action.
+- Keep operation-specific validation in workflow logic before execution.
+- Keep the skill aligned with `packages/n8n-nodes-discourse/README.md` whenever behavior changes.
+
+## Related Discourse Extended operation
+- Resource: Data Explorer
+- Operation: Get
+- Internal key: dataExplorer.get
+- Action label: Get a query","[]","git-bfac806","bfac8060378f8c2d678bfd480eab771ed890c8a8","2026-03-03T20:00:47.985Z"
+"dataExplorer.getMany","true","discourse-extended","100","Data Explorer - Get Many","Use this skill when you need to get many queries via Discourse Extended.","dataExplorer.getMany: Use this skill when you need to get many queries via Discourse Extended.","[""discourse-extended"",""dataExplorer"",""getMany"",""get_many"",""read"",""list"",""data-explorer""]","# dataExplorer.getMany
+
+## When to use
+Use this skill when the workflow needs to get many queries through the Discourse Extended node in a deterministic way.
+
+## When not to use
+- Do not use this skill for unrelated resources or cross-resource side effects not represented by this operation.
+- Do not use this skill when required identifiers are missing or ambiguous.
+- Do not bypass higher-level workflow guardrails for permission, approval, or validation.
+
+## Required inputs
+- Valid `Discourse API (Discourse Extended)` credentials in n8n.
+- Node parameters for Resource: Data Explorer and Operation: getMany configured with required fields.
+
+## Optional inputs
+- Optional filtering, pagination, simplify/output controls as exposed by the action.
+- Optional metadata and additional fields supported by the Discourse endpoint for this action.
+- `Return All`/`Limit` controls for result volume management.
+
+## Execution behavior
+This skill is a thin operational wrapper around Discourse Extended action dataExplorer.getMany (Get Many). It is intended to get many queries while preserving n8n workflow-level orchestration and error handling. This action is retrieval-oriented and should not mutate Discourse state.
+
+## Output contract
+- Returns JSON items compatible with downstream n8n nodes.
+- Item count may be one or many depending on operation semantics and pagination settings.
+- Error surfaces should include actionable context for retry or user clarification paths.
+- Retrieval list operations can return large payloads; use limits/simplification where possible.
+
+## Failure handling
+- Validate required identifiers and payload fields before calling this action.
+- On API errors, capture status/message and return structured error data for the workflow to branch on.
+- Prefer deterministic retries only for transient errors; avoid blind retries on validation/auth failures.
+
+## Safety and guardrails
+- Scope credentials and permissions to the minimum needed for this action.
+- Keep operation-specific validation in workflow logic before execution.
+- Keep the skill aligned with `packages/n8n-nodes-discourse/README.md` whenever behavior changes.
+
+## Related Discourse Extended operation
+- Resource: Data Explorer
+- Operation: Get Many
+- Internal key: dataExplorer.getMany
+- Action label: Get many queries","[]","git-bfac806","bfac8060378f8c2d678bfd480eab771ed890c8a8","2026-03-03T20:00:47.985Z"
+"dataExplorer.run","true","discourse-extended","90","Data Explorer - Run","Use this skill when you need to run a query via Discourse Extended.","dataExplorer.run: Use this skill when you need to run a query via Discourse Extended.","[""discourse-extended"",""dataExplorer"",""run"",""analysis"",""data-explorer""]","# dataExplorer.run
+
+## When to use
+Use this skill when the workflow needs to run a query through the Discourse Extended node in a deterministic way.
+
+## When not to use
+- Do not use this skill for unrelated resources or cross-resource side effects not represented by this operation.
+- Do not use this skill when required identifiers are missing or ambiguous.
+- Do not bypass higher-level workflow guardrails for permission, approval, or validation.
+
+## Required inputs
+- Valid `Discourse API (Discourse Extended)` credentials in n8n.
+- Node parameters for Resource: Data Explorer and Operation: run configured with required fields.
+
+## Optional inputs
+- Optional filtering, pagination, simplify/output controls as exposed by the action.
+- Optional metadata and additional fields supported by the Discourse endpoint for this action.
+
+## Execution behavior
+This skill is a thin operational wrapper around Discourse Extended action dataExplorer.run (Run). It is intended to run a query while preserving n8n workflow-level orchestration and error handling. This action transforms or analyzes content and may prepare data for downstream generation/execution.
+
+## Output contract
+- Returns JSON items compatible with downstream n8n nodes.
+- Item count may be one or many depending on operation semantics and pagination settings.
+- Error surfaces should include actionable context for retry or user clarification paths.
+
+## Failure handling
+- Validate required identifiers and payload fields before calling this action.
+- On API errors, capture status/message and return structured error data for the workflow to branch on.
+- Prefer deterministic retries only for transient errors; avoid blind retries on validation/auth failures.
+
+## Safety and guardrails
+- Scope credentials and permissions to the minimum needed for this action.
+- Keep operation-specific validation in workflow logic before execution.
+- Keep the skill aligned with `packages/n8n-nodes-discourse/README.md` whenever behavior changes.
+
+## Related Discourse Extended operation
+- Resource: Data Explorer
+- Operation: Run
+- Internal key: dataExplorer.run
+- Action label: Run a query","[]","git-bfac806","bfac8060378f8c2d678bfd480eab771ed890c8a8","2026-03-03T20:00:47.985Z"
+"dataExplorer.update","true","discourse-extended","80","Data Explorer - Update","Use this skill when you need to update a query via Discourse Extended.","dataExplorer.update: Use this skill when you need to update a query via Discourse Extended.","[""discourse-extended"",""dataExplorer"",""update"",""write"",""data-explorer""]","# dataExplorer.update
+
+## When to use
+Use this skill when the workflow needs to update a query through the Discourse Extended node in a deterministic way.
+
+## When not to use
+- Do not use this skill for unrelated resources or cross-resource side effects not represented by this operation.
+- Do not use this skill when required identifiers are missing or ambiguous.
+- Do not bypass higher-level workflow guardrails for permission, approval, or validation.
+
+## Required inputs
+- Valid `Discourse API (Discourse Extended)` credentials in n8n.
+- Node parameters for Resource: Data Explorer and Operation: update configured with required fields.
+
+## Optional inputs
+- Optional filtering, pagination, simplify/output controls as exposed by the action.
+- Optional metadata and additional fields supported by the Discourse endpoint for this action.
+
+## Execution behavior
+This skill is a thin operational wrapper around Discourse Extended action dataExplorer.update (Update). It is intended to update a query while preserving n8n workflow-level orchestration and error handling. This action mutates Discourse state and should be used when the workflow explicitly needs to create/update/set entities.
+
+## Output contract
+- Returns JSON items compatible with downstream n8n nodes.
+- Item count may be one or many depending on operation semantics and pagination settings.
+- Error surfaces should include actionable context for retry or user clarification paths.
+
+## Failure handling
+- Validate required identifiers and payload fields before calling this action.
+- On API errors, capture status/message and return structured error data for the workflow to branch on.
+- Prefer deterministic retries only for transient errors; avoid blind retries on validation/auth failures.
+
+## Safety and guardrails
+- Scope credentials and permissions to the minimum needed for this action.
+- Keep operation-specific validation in workflow logic before execution.
+- Keep the skill aligned with `packages/n8n-nodes-discourse/README.md` whenever behavior changes.
+
+## Related Discourse Extended operation
+- Resource: Data Explorer
+- Operation: Update
+- Internal key: dataExplorer.update
+- Action label: Update a query","[]","git-bfac806","bfac8060378f8c2d678bfd480eab771ed890c8a8","2026-03-03T20:00:47.985Z"
+"personalMessage.addParticipant","true","discourse-extended","80","Personal Message - Add Participant","Use this skill when you need to add a participant to a personal message via Discourse Extended.","personalMessage.addParticipant: Use this skill when you need to add a participant to a personal message via Discourse Extended.","[""discourse-extended"",""personalMessage"",""addParticipant"",""add_participant"",""write"",""pm""]","# personalMessage.addParticipant
+
+## When to use
+Use this skill when the workflow needs to add a participant to a personal message through the Discourse Extended node in a deterministic way.
+
+## When not to use
+- Do not use this skill for unrelated resources or cross-resource side effects not represented by this operation.
+- Do not use this skill when required identifiers are missing or ambiguous.
+- Do not bypass higher-level workflow guardrails for permission, approval, or validation.
+
+## Required inputs
+- Valid `Discourse API (Discourse Extended)` credentials in n8n.
+- Node parameters for Resource: Personal Message and Operation: addParticipant configured with required fields.
+- Target topic/participants/group inputs for personal message routing operations.
+
+## Optional inputs
+- Optional filtering, pagination, simplify/output controls as exposed by the action.
+- Optional metadata and additional fields supported by the Discourse endpoint for this action.
+
+## Execution behavior
+This skill is a thin operational wrapper around Discourse Extended action personalMessage.addParticipant (Add Participant). It is intended to add a participant to a personal message while preserving n8n workflow-level orchestration and error handling. This action mutates Discourse state and should be used when the workflow explicitly needs to create/update/set entities.
+
+## Output contract
+- Returns JSON items compatible with downstream n8n nodes.
+- Item count may be one or many depending on operation semantics and pagination settings.
+- Error surfaces should include actionable context for retry or user clarification paths.
+
+## Failure handling
+- Validate required identifiers and payload fields before calling this action.
+- On API errors, capture status/message and return structured error data for the workflow to branch on.
+- Prefer deterministic retries only for transient errors; avoid blind retries on validation/auth failures.
+
+## Safety and guardrails
+- Scope credentials and permissions to the minimum needed for this action.
+- Keep operation-specific validation in workflow logic before execution.
+- Keep the skill aligned with `packages/n8n-nodes-discourse/README.md` whenever behavior changes.
+
+## Related Discourse Extended operation
+- Resource: Personal Message
+- Operation: Add Participant
+- Internal key: personalMessage.addParticipant
+- Action label: Add a participant to a personal message","[]","git-bfac806","bfac8060378f8c2d678bfd480eab771ed890c8a8","2026-03-03T20:00:47.985Z"
+"personalMessage.addParticipants","true","discourse-extended","80","Personal Message - Add Participants (Batch)","Use this skill when you need to add participants to a personal message via Discourse Extended.","personalMessage.addParticipants: Use this skill when you need to add participants to a personal message via Discourse Extended.","[""discourse-extended"",""personalMessage"",""addParticipants"",""add_participants"",""write"",""pm""]","# personalMessage.addParticipants
+
+## When to use
+Use this skill when the workflow needs to add participants to a personal message through the Discourse Extended node in a deterministic way.
+
+## When not to use
+- Do not use this skill for unrelated resources or cross-resource side effects not represented by this operation.
+- Do not use this skill when required identifiers are missing or ambiguous.
+- Do not bypass higher-level workflow guardrails for permission, approval, or validation.
+
+## Required inputs
+- Valid `Discourse API (Discourse Extended)` credentials in n8n.
+- Node parameters for Resource: Personal Message and Operation: addParticipants configured with required fields.
+- Target topic/participants/group inputs for personal message routing operations.
+
+## Optional inputs
+- Optional filtering, pagination, simplify/output controls as exposed by the action.
+- Optional metadata and additional fields supported by the Discourse endpoint for this action.
+
+## Execution behavior
+This skill is a thin operational wrapper around Discourse Extended action personalMessage.addParticipants (Add Participants (Batch)). It is intended to add participants to a personal message while preserving n8n workflow-level orchestration and error handling. This action mutates Discourse state and should be used when the workflow explicitly needs to create/update/set entities.
+
+## Output contract
+- Returns JSON items compatible with downstream n8n nodes.
+- Item count may be one or many depending on operation semantics and pagination settings.
+- Error surfaces should include actionable context for retry or user clarification paths.
+
+## Failure handling
+- Validate required identifiers and payload fields before calling this action.
+- On API errors, capture status/message and return structured error data for the workflow to branch on.
+- Prefer deterministic retries only for transient errors; avoid blind retries on validation/auth failures.
+
+## Safety and guardrails
+- Scope credentials and permissions to the minimum needed for this action.
+- Keep operation-specific validation in workflow logic before execution.
+- Keep the skill aligned with `packages/n8n-nodes-discourse/README.md` whenever behavior changes.
+
+## Related Discourse Extended operation
+- Resource: Personal Message
+- Operation: Add Participants (Batch)
+- Internal key: personalMessage.addParticipants
+- Action label: Add participants to a personal message","[]","git-bfac806","bfac8060378f8c2d678bfd480eab771ed890c8a8","2026-03-03T20:00:47.985Z"
+"personalMessage.create","true","discourse-extended","80","Personal Message - Create","Use this skill when you need to create a personal message via Discourse Extended.","personalMessage.create: Use this skill when you need to create a personal message via Discourse Extended.","[""discourse-extended"",""personalMessage"",""create"",""write"",""pm""]","# personalMessage.create
+
+## When to use
+Use this skill when the workflow needs to create a personal message through the Discourse Extended node in a deterministic way.
+
+## When not to use
+- Do not use this skill for unrelated resources or cross-resource side effects not represented by this operation.
+- Do not use this skill when required identifiers are missing or ambiguous.
+- Do not bypass higher-level workflow guardrails for permission, approval, or validation.
+
+## Required inputs
+- Valid `Discourse API (Discourse Extended)` credentials in n8n.
+- Node parameters for Resource: Personal Message and Operation: create configured with required fields.
+- Target topic/participants/group inputs for personal message routing operations.
+
+## Optional inputs
+- Optional filtering, pagination, simplify/output controls as exposed by the action.
+- Optional metadata and additional fields supported by the Discourse endpoint for this action.
+
+## Execution behavior
+This skill is a thin operational wrapper around Discourse Extended action personalMessage.create (Create). It is intended to create a personal message while preserving n8n workflow-level orchestration and error handling. This action mutates Discourse state and should be used when the workflow explicitly needs to create/update/set entities.
+
+## Output contract
+- Returns JSON items compatible with downstream n8n nodes.
+- Item count may be one or many depending on operation semantics and pagination settings.
+- Error surfaces should include actionable context for retry or user clarification paths.
+
+## Failure handling
+- Validate required identifiers and payload fields before calling this action.
+- On API errors, capture status/message and return structured error data for the workflow to branch on.
+- Prefer deterministic retries only for transient errors; avoid blind retries on validation/auth failures.
+
+## Safety and guardrails
+- Scope credentials and permissions to the minimum needed for this action.
+- Keep operation-specific validation in workflow logic before execution.
+- Keep the skill aligned with `packages/n8n-nodes-discourse/README.md` whenever behavior changes.
+
+## Related Discourse Extended operation
+- Resource: Personal Message
+- Operation: Create
+- Internal key: personalMessage.create
+- Action label: Create a personal message","[]","git-bfac806","bfac8060378f8c2d678bfd480eab771ed890c8a8","2026-03-03T20:00:47.985Z"
+"personalMessage.getManyInbox","true","discourse-extended","100","Personal Message - Get Many (Inbox)","Use this skill when you need to get many personal messages from inbox via Discourse Extended.","personalMessage.getManyInbox: Use this skill when you need to get many personal messages from inbox via Discourse Extended.","[""discourse-extended"",""personalMessage"",""getManyInbox"",""get_many_inbox"",""read"",""list"",""pm""]","# personalMessage.getManyInbox
+
+## When to use
+Use this skill when the workflow needs to get many personal messages from inbox through the Discourse Extended node in a deterministic way.
+
+## When not to use
+- Do not use this skill for unrelated resources or cross-resource side effects not represented by this operation.
+- Do not use this skill when required identifiers are missing or ambiguous.
+- Do not bypass higher-level workflow guardrails for permission, approval, or validation.
+
+## Required inputs
+- Valid `Discourse API (Discourse Extended)` credentials in n8n.
+- Node parameters for Resource: Personal Message and Operation: getManyInbox configured with required fields.
+- Target topic/participants/group inputs for personal message routing operations.
+
+## Optional inputs
+- Optional filtering, pagination, simplify/output controls as exposed by the action.
+- Optional metadata and additional fields supported by the Discourse endpoint for this action.
+- `Return All`/`Limit` controls for result volume management.
+
+## Execution behavior
+This skill is a thin operational wrapper around Discourse Extended action personalMessage.getManyInbox (Get Many (Inbox)). It is intended to get many personal messages from inbox while preserving n8n workflow-level orchestration and error handling. This action is retrieval-oriented and should not mutate Discourse state.
+
+## Output contract
+- Returns JSON items compatible with downstream n8n nodes.
+- Item count may be one or many depending on operation semantics and pagination settings.
+- Error surfaces should include actionable context for retry or user clarification paths.
+- Retrieval list operations can return large payloads; use limits/simplification where possible.
+
+## Failure handling
+- Validate required identifiers and payload fields before calling this action.
+- On API errors, capture status/message and return structured error data for the workflow to branch on.
+- Prefer deterministic retries only for transient errors; avoid blind retries on validation/auth failures.
+
+## Safety and guardrails
+- Scope credentials and permissions to the minimum needed for this action.
+- Keep operation-specific validation in workflow logic before execution.
+- Keep the skill aligned with `packages/n8n-nodes-discourse/README.md` whenever behavior changes.
+
+## Related Discourse Extended operation
+- Resource: Personal Message
+- Operation: Get Many (Inbox)
+- Internal key: personalMessage.getManyInbox
+- Action label: Get many personal messages from inbox","[]","git-bfac806","bfac8060378f8c2d678bfd480eab771ed890c8a8","2026-03-03T20:00:47.985Z"
+"personalMessage.getManySent","true","discourse-extended","100","Personal Message - Get Many (Sent)","Use this skill when you need to get many sent personal messages via Discourse Extended.","personalMessage.getManySent: Use this skill when you need to get many sent personal messages via Discourse Extended.","[""discourse-extended"",""personalMessage"",""getManySent"",""get_many_sent"",""read"",""list"",""pm""]","# personalMessage.getManySent
+
+## When to use
+Use this skill when the workflow needs to get many sent personal messages through the Discourse Extended node in a deterministic way.
+
+## When not to use
+- Do not use this skill for unrelated resources or cross-resource side effects not represented by this operation.
+- Do not use this skill when required identifiers are missing or ambiguous.
+- Do not bypass higher-level workflow guardrails for permission, approval, or validation.
+
+## Required inputs
+- Valid `Discourse API (Discourse Extended)` credentials in n8n.
+- Node parameters for Resource: Personal Message and Operation: getManySent configured with required fields.
+- Target topic/participants/group inputs for personal message routing operations.
+
+## Optional inputs
+- Optional filtering, pagination, simplify/output controls as exposed by the action.
+- Optional metadata and additional fields supported by the Discourse endpoint for this action.
+- `Return All`/`Limit` controls for result volume management.
+
+## Execution behavior
+This skill is a thin operational wrapper around Discourse Extended action personalMessage.getManySent (Get Many (Sent)). It is intended to get many sent personal messages while preserving n8n workflow-level orchestration and error handling. This action is retrieval-oriented and should not mutate Discourse state.
+
+## Output contract
+- Returns JSON items compatible with downstream n8n nodes.
+- Item count may be one or many depending on operation semantics and pagination settings.
+- Error surfaces should include actionable context for retry or user clarification paths.
+- Retrieval list operations can return large payloads; use limits/simplification where possible.
+
+## Failure handling
+- Validate required identifiers and payload fields before calling this action.
+- On API errors, capture status/message and return structured error data for the workflow to branch on.
+- Prefer deterministic retries only for transient errors; avoid blind retries on validation/auth failures.
+
+## Safety and guardrails
+- Scope credentials and permissions to the minimum needed for this action.
+- Keep operation-specific validation in workflow logic before execution.
+- Keep the skill aligned with `packages/n8n-nodes-discourse/README.md` whenever behavior changes.
+
+## Related Discourse Extended operation
+- Resource: Personal Message
+- Operation: Get Many (Sent)
+- Internal key: personalMessage.getManySent
+- Action label: Get many sent personal messages","[]","git-bfac806","bfac8060378f8c2d678bfd480eab771ed890c8a8","2026-03-03T20:00:47.985Z"
+"personalMessage.inviteGroup","true","discourse-extended","80","Personal Message - Invite Group","Use this skill when you need to invite a group to a personal message via Discourse Extended.","personalMessage.inviteGroup: Use this skill when you need to invite a group to a personal message via Discourse Extended.","[""discourse-extended"",""personalMessage"",""inviteGroup"",""invite_group"",""write"",""pm""]","# personalMessage.inviteGroup
+
+## When to use
+Use this skill when the workflow needs to invite a group to a personal message through the Discourse Extended node in a deterministic way.
+
+## When not to use
+- Do not use this skill for unrelated resources or cross-resource side effects not represented by this operation.
+- Do not use this skill when required identifiers are missing or ambiguous.
+- Do not bypass higher-level workflow guardrails for permission, approval, or validation.
+
+## Required inputs
+- Valid `Discourse API (Discourse Extended)` credentials in n8n.
+- Node parameters for Resource: Personal Message and Operation: inviteGroup configured with required fields.
+- Target topic/participants/group inputs for personal message routing operations.
+
+## Optional inputs
+- Optional filtering, pagination, simplify/output controls as exposed by the action.
+- Optional metadata and additional fields supported by the Discourse endpoint for this action.
+
+## Execution behavior
+This skill is a thin operational wrapper around Discourse Extended action personalMessage.inviteGroup (Invite Group). It is intended to invite a group to a personal message while preserving n8n workflow-level orchestration and error handling. This action mutates Discourse state and should be used when the workflow explicitly needs to create/update/set entities.
+
+## Output contract
+- Returns JSON items compatible with downstream n8n nodes.
+- Item count may be one or many depending on operation semantics and pagination settings.
+- Error surfaces should include actionable context for retry or user clarification paths.
+
+## Failure handling
+- Validate required identifiers and payload fields before calling this action.
+- On API errors, capture status/message and return structured error data for the workflow to branch on.
+- Prefer deterministic retries only for transient errors; avoid blind retries on validation/auth failures.
+
+## Safety and guardrails
+- Scope credentials and permissions to the minimum needed for this action.
+- Keep operation-specific validation in workflow logic before execution.
+- Keep the skill aligned with `packages/n8n-nodes-discourse/README.md` whenever behavior changes.
+
+## Related Discourse Extended operation
+- Resource: Personal Message
+- Operation: Invite Group
+- Internal key: personalMessage.inviteGroup
+- Action label: Invite a group to a personal message","[]","git-bfac806","bfac8060378f8c2d678bfd480eab771ed890c8a8","2026-03-03T20:00:47.985Z"
+"personalMessage.removeParticipant","true","discourse-extended","40","Personal Message - Remove Participant","Use this skill when you need to remove a participant from a personal message via Discourse Extended.","personalMessage.removeParticipant: Use this skill when you need to remove a participant from a personal message via Discourse Extended.","[""discourse-extended"",""personalMessage"",""removeParticipant"",""remove_participant"",""destructive"",""removal"",""pm""]","# personalMessage.removeParticipant
+
+## When to use
+Use this skill when the workflow needs to remove a participant from a personal message through the Discourse Extended node in a deterministic way.
+
+## When not to use
+- Do not use this skill for unrelated resources or cross-resource side effects not represented by this operation.
+- Do not use this skill when required identifiers are missing or ambiguous.
+- Do not bypass higher-level workflow guardrails for permission, approval, or validation.
+
+## Required inputs
+- Valid `Discourse API (Discourse Extended)` credentials in n8n.
+- Node parameters for Resource: Personal Message and Operation: removeParticipant configured with required fields.
+- Target topic/participants/group inputs for personal message routing operations.
+- Explicit target ID/key to avoid accidental destructive operations.
+
+## Optional inputs
+- Optional filtering, pagination, simplify/output controls as exposed by the action.
+- Optional metadata and additional fields supported by the Discourse endpoint for this action.
+
+## Execution behavior
+This skill is a thin operational wrapper around Discourse Extended action personalMessage.removeParticipant (Remove Participant). It is intended to remove a participant from a personal message while preserving n8n workflow-level orchestration and error handling. This action is destructive/removal-oriented and should be gated by strict workflow guardrails.
+
+## Output contract
+- Returns JSON items compatible with downstream n8n nodes.
+- Item count may be one or many depending on operation semantics and pagination settings.
+- Error surfaces should include actionable context for retry or user clarification paths.
+
+## Failure handling
+- Validate required identifiers and payload fields before calling this action.
+- On API errors, capture status/message and return structured error data for the workflow to branch on.
+- Prefer deterministic retries only for transient errors; avoid blind retries on validation/auth failures.
+
+## Safety and guardrails
+- Treat as high-risk: require explicit user/workflow intent before execution.
+- Prefer ID-based targeting over ambiguous text lookups.
+- Log actor, target, and reason for auditability.
+
+## Related Discourse Extended operation
+- Resource: Personal Message
+- Operation: Remove Participant
+- Internal key: personalMessage.removeParticipant
+- Action label: Remove a participant from a personal message","[]","git-bfac806","bfac8060378f8c2d678bfd480eab771ed890c8a8","2026-03-03T20:00:47.985Z"
+"personalMessage.reply","true","discourse-extended","80","Personal Message - Reply","Use this skill when you need to reply to a personal message via Discourse Extended.","personalMessage.reply: Use this skill when you need to reply to a personal message via Discourse Extended.","[""discourse-extended"",""personalMessage"",""reply"",""write"",""pm""]","# personalMessage.reply
+
+## When to use
+Use this skill when the workflow needs to reply to a personal message through the Discourse Extended node in a deterministic way.
+
+## When not to use
+- Do not use this skill for unrelated resources or cross-resource side effects not represented by this operation.
+- Do not use this skill when required identifiers are missing or ambiguous.
+- Do not bypass higher-level workflow guardrails for permission, approval, or validation.
+
+## Required inputs
+- Valid `Discourse API (Discourse Extended)` credentials in n8n.
+- Node parameters for Resource: Personal Message and Operation: reply configured with required fields.
+- Target topic/participants/group inputs for personal message routing operations.
+
+## Optional inputs
+- Optional filtering, pagination, simplify/output controls as exposed by the action.
+- Optional metadata and additional fields supported by the Discourse endpoint for this action.
+
+## Execution behavior
+This skill is a thin operational wrapper around Discourse Extended action personalMessage.reply (Reply). It is intended to reply to a personal message while preserving n8n workflow-level orchestration and error handling. This action mutates Discourse state and should be used when the workflow explicitly needs to create/update/set entities.
+
+## Output contract
+- Returns JSON items compatible with downstream n8n nodes.
+- Item count may be one or many depending on operation semantics and pagination settings.
+- Error surfaces should include actionable context for retry or user clarification paths.
+
+## Failure handling
+- Validate required identifiers and payload fields before calling this action.
+- On API errors, capture status/message and return structured error data for the workflow to branch on.
+- Prefer deterministic retries only for transient errors; avoid blind retries on validation/auth failures.
+
+## Safety and guardrails
+- Scope credentials and permissions to the minimum needed for this action.
+- Keep operation-specific validation in workflow logic before execution.
+- Keep the skill aligned with `packages/n8n-nodes-discourse/README.md` whenever behavior changes.
+
+## Related Discourse Extended operation
+- Resource: Personal Message
+- Operation: Reply
+- Internal key: personalMessage.reply
+- Action label: Reply to a personal message","[]","git-bfac806","bfac8060378f8c2d678bfd480eab771ed890c8a8","2026-03-03T20:00:47.985Z"
+"post.bookmark","true","discourse-extended","80","Post - Bookmark","Use this skill when you need to bookmark a post via Discourse Extended.","post.bookmark: Use this skill when you need to bookmark a post via Discourse Extended.","[""discourse-extended"",""post"",""bookmark"",""write""]","# post.bookmark
+
+## When to use
+Use this skill when the workflow needs to bookmark a post through the Discourse Extended node in a deterministic way.
+
+## When not to use
+- Do not use this skill for unrelated resources or cross-resource side effects not represented by this operation.
+- Do not use this skill when required identifiers are missing or ambiguous.
+- Do not bypass higher-level workflow guardrails for permission, approval, or validation.
+
+## Required inputs
+- Valid `Discourse API (Discourse Extended)` credentials in n8n.
+- Node parameters for Resource: Post and Operation: bookmark configured with required fields.
+
+## Optional inputs
+- Optional filtering, pagination, simplify/output controls as exposed by the action.
+- Optional metadata and additional fields supported by the Discourse endpoint for this action.
+
+## Execution behavior
+This skill is a thin operational wrapper around Discourse Extended action post.bookmark (Bookmark). It is intended to bookmark a post while preserving n8n workflow-level orchestration and error handling. This action mutates Discourse state and should be used when the workflow explicitly needs to create/update/set entities.
+
+## Output contract
+- Returns JSON items compatible with downstream n8n nodes.
+- Item count may be one or many depending on operation semantics and pagination settings.
+- Error surfaces should include actionable context for retry or user clarification paths.
+
+## Failure handling
+- Validate required identifiers and payload fields before calling this action.
+- On API errors, capture status/message and return structured error data for the workflow to branch on.
+- Prefer deterministic retries only for transient errors; avoid blind retries on validation/auth failures.
+
+## Safety and guardrails
+- Scope credentials and permissions to the minimum needed for this action.
+- Keep operation-specific validation in workflow logic before execution.
+- Keep the skill aligned with `packages/n8n-nodes-discourse/README.md` whenever behavior changes.
+
+## Related Discourse Extended operation
+- Resource: Post
+- Operation: Bookmark
+- Internal key: post.bookmark
+- Action label: Bookmark a post","[]","git-bfac806","bfac8060378f8c2d678bfd480eab771ed890c8a8","2026-03-03T20:00:47.985Z"
+"post.create","true","discourse-extended","80","Post - Create","Use this skill when you need to create a post reply via Discourse Extended.","post.create: Use this skill when you need to create a post reply via Discourse Extended.","[""discourse-extended"",""post"",""create"",""write""]","# post.create
+
+## When to use
+Use this skill when the workflow needs to create a post reply through the Discourse Extended node in a deterministic way.
+
+## When not to use
+- Do not use this skill for unrelated resources or cross-resource side effects not represented by this operation.
+- Do not use this skill when required identifiers are missing or ambiguous.
+- Do not bypass higher-level workflow guardrails for permission, approval, or validation.
+
+## Required inputs
+- Valid `Discourse API (Discourse Extended)` credentials in n8n.
+- Node parameters for Resource: Post and Operation: create configured with required fields.
+
+## Optional inputs
+- Optional filtering, pagination, simplify/output controls as exposed by the action.
+- Optional metadata and additional fields supported by the Discourse endpoint for this action.
+
+## Execution behavior
+This skill is a thin operational wrapper around Discourse Extended action post.create (Create). It is intended to create a post reply while preserving n8n workflow-level orchestration and error handling. This action mutates Discourse state and should be used when the workflow explicitly needs to create/update/set entities.
+
+## Output contract
+- Returns JSON items compatible with downstream n8n nodes.
+- Item count may be one or many depending on operation semantics and pagination settings.
+- Error surfaces should include actionable context for retry or user clarification paths.
+
+## Failure handling
+- Validate required identifiers and payload fields before calling this action.
+- On API errors, capture status/message and return structured error data for the workflow to branch on.
+- Prefer deterministic retries only for transient errors; avoid blind retries on validation/auth failures.
+
+## Safety and guardrails
+- Scope credentials and permissions to the minimum needed for this action.
+- Keep operation-specific validation in workflow logic before execution.
+- Keep the skill aligned with `packages/n8n-nodes-discourse/README.md` whenever behavior changes.
+
+## Related Discourse Extended operation
+- Resource: Post
+- Operation: Create
+- Internal key: post.create
+- Action label: Create a post reply","[]","git-bfac806","bfac8060378f8c2d678bfd480eab771ed890c8a8","2026-03-03T20:00:47.985Z"
+"post.delete","true","discourse-extended","40","Post - Delete","Use this skill when you need to delete a post via Discourse Extended.","post.delete: Use this skill when you need to delete a post via Discourse Extended.","[""discourse-extended"",""post"",""delete"",""destructive"",""removal""]","# post.delete
+
+## When to use
+Use this skill when the workflow needs to delete a post through the Discourse Extended node in a deterministic way.
+
+## When not to use
+- Do not use this skill for unrelated resources or cross-resource side effects not represented by this operation.
+- Do not use this skill when required identifiers are missing or ambiguous.
+- Do not bypass higher-level workflow guardrails for permission, approval, or validation.
+
+## Required inputs
+- Valid `Discourse API (Discourse Extended)` credentials in n8n.
+- Node parameters for Resource: Post and Operation: delete configured with required fields.
+- Explicit target ID/key to avoid accidental destructive operations.
+
+## Optional inputs
+- Optional filtering, pagination, simplify/output controls as exposed by the action.
+- Optional metadata and additional fields supported by the Discourse endpoint for this action.
+
+## Execution behavior
+This skill is a thin operational wrapper around Discourse Extended action post.delete (Delete). It is intended to delete a post while preserving n8n workflow-level orchestration and error handling. This action is destructive/removal-oriented and should be gated by strict workflow guardrails.
+
+## Output contract
+- Returns JSON items compatible with downstream n8n nodes.
+- Item count may be one or many depending on operation semantics and pagination settings.
+- Error surfaces should include actionable context for retry or user clarification paths.
+
+## Failure handling
+- Validate required identifiers and payload fields before calling this action.
+- On API errors, capture status/message and return structured error data for the workflow to branch on.
+- Prefer deterministic retries only for transient errors; avoid blind retries on validation/auth failures.
+
+## Safety and guardrails
+- Treat as high-risk: require explicit user/workflow intent before execution.
+- Prefer ID-based targeting over ambiguous text lookups.
+- Log actor, target, and reason for auditability.
+
+## Related Discourse Extended operation
+- Resource: Post
+- Operation: Delete
+- Internal key: post.delete
+- Action label: Delete a post","[]","git-bfac806","bfac8060378f8c2d678bfd480eab771ed890c8a8","2026-03-03T20:00:47.985Z"
+"post.generateTtsAudio","true","discourse-extended","70","Post - Generate TTS Audio","Use this skill when you need to generate stitched TTS audio via Discourse Extended.","post.generateTtsAudio: Use this skill when you need to generate stitched TTS audio via Discourse Extended.","[""discourse-extended"",""post"",""generateTtsAudio"",""generate_tts_audio"",""external_io"",""tts""]","# post.generateTtsAudio
+
+## When to use
+Use this skill when the workflow needs to generate stitched TTS audio through the Discourse Extended node in a deterministic way.
+
+## When not to use
+- Do not use this skill for unrelated resources or cross-resource side effects not represented by this operation.
+- Do not use this skill when required identifiers are missing or ambiguous.
+- Do not bypass higher-level workflow guardrails for permission, approval, or validation.
+
+## Required inputs
+- Valid `Discourse API (Discourse Extended)` credentials in n8n.
+- Node parameters for Resource: Post and Operation: generateTtsAudio configured with required fields.
+- `ElevenLabs API` credentials and TTS parameters (`Voice ID`, `Model ID`, cleaned text).
+
+## Optional inputs
+- Optional filtering, pagination, simplify/output controls as exposed by the action.
+- Optional metadata and additional fields supported by the Discourse endpoint for this action.
+
+## Execution behavior
+This skill is a thin operational wrapper around Discourse Extended action post.generateTtsAudio (Generate TTS Audio). It is intended to generate stitched TTS audio while preserving n8n workflow-level orchestration and error handling. This action includes non-trivial external IO (for example media generation or object storage upload).
+
+## Output contract
+- Returns JSON items compatible with downstream n8n nodes.
+- Item count may be one or many depending on operation semantics and pagination settings.
+- Error surfaces should include actionable context for retry or user clarification paths.
+- May include binary artifacts and/or generated file metadata for downstream transport/storage nodes.
+
+## Failure handling
+- Validate required identifiers and payload fields before calling this action.
+- On API errors, capture status/message and return structured error data for the workflow to branch on.
+- Prefer deterministic retries only for transient errors; avoid blind retries on validation/auth failures.
+- For long-running or chunked generation/upload paths, use bounded retries with backoff and preserve partial diagnostics.
+
+## Safety and guardrails
+- Scope credentials and permissions to the minimum needed for this action.
+- Keep operation-specific validation in workflow logic before execution.
+- Keep the skill aligned with `packages/n8n-nodes-discourse/README.md` whenever behavior changes.
+
+## Related Discourse Extended operation
+- Resource: Post
+- Operation: Generate TTS Audio
+- Internal key: post.generateTtsAudio
+- Action label: Generate stitched TTS audio","[]","git-bfac806","bfac8060378f8c2d678bfd480eab771ed890c8a8","2026-03-03T20:00:47.985Z"
+"post.generateTtsAudioWithSpacesUpload","true","discourse-extended","70","Post - Generate TTS Audio + Spaces Upload","Use this skill when you need to generate stitched TTS audio and upload to spaces via Discourse Extended.","post.generateTtsAudioWithSpacesUpload: Use this skill when you need to generate stitched TTS audio and upload to spaces via Discourse Extended.","[""discourse-extended"",""post"",""generateTtsAudioWithSpacesUpload"",""generate_tts_audio_with_spaces_upload"",""external_io"",""tts""]","# post.generateTtsAudioWithSpacesUpload
+
+## When to use
+Use this skill when the workflow needs to generate stitched TTS audio and upload to spaces through the Discourse Extended node in a deterministic way.
+
+## When not to use
+- Do not use this skill for unrelated resources or cross-resource side effects not represented by this operation.
+- Do not use this skill when required identifiers are missing or ambiguous.
+- Do not bypass higher-level workflow guardrails for permission, approval, or validation.
+
+## Required inputs
+- Valid `Discourse API (Discourse Extended)` credentials in n8n.
+- Node parameters for Resource: Post and Operation: generateTtsAudioWithSpacesUpload configured with required fields.
+- `ElevenLabs API` credentials and TTS parameters (`Voice ID`, `Model ID`, cleaned text).
+- Object storage-related fields and credentials when uploading artifacts or source data.
+
+## Optional inputs
+- Optional filtering, pagination, simplify/output controls as exposed by the action.
+- Optional metadata and additional fields supported by the Discourse endpoint for this action.
+
+## Execution behavior
+This skill is a thin operational wrapper around Discourse Extended action post.generateTtsAudioWithSpacesUpload (Generate TTS Audio + Spaces Upload). It is intended to generate stitched TTS audio and upload to spaces while preserving n8n workflow-level orchestration and error handling. This action includes non-trivial external IO (for example media generation or object storage upload).
+
+## Output contract
+- Returns JSON items compatible with downstream n8n nodes.
+- Item count may be one or many depending on operation semantics and pagination settings.
+- Error surfaces should include actionable context for retry or user clarification paths.
+- May include binary artifacts and/or generated file metadata for downstream transport/storage nodes.
+
+## Failure handling
+- Validate required identifiers and payload fields before calling this action.
+- On API errors, capture status/message and return structured error data for the workflow to branch on.
+- Prefer deterministic retries only for transient errors; avoid blind retries on validation/auth failures.
+- For long-running or chunked generation/upload paths, use bounded retries with backoff and preserve partial diagnostics.
+
+## Safety and guardrails
+- Scope credentials and permissions to the minimum needed for this action.
+- Keep operation-specific validation in workflow logic before execution.
+- Keep the skill aligned with `packages/n8n-nodes-discourse/README.md` whenever behavior changes.
+
+## Related Discourse Extended operation
+- Resource: Post
+- Operation: Generate TTS Audio + Spaces Upload
+- Internal key: post.generateTtsAudioWithSpacesUpload
+- Action label: Generate stitched TTS audio and upload to spaces","[]","git-bfac806","bfac8060378f8c2d678bfd480eab771ed890c8a8","2026-03-03T20:00:47.985Z"
+"post.get","true","discourse-extended","100","Post - Get","Use this skill when you need to get a post via Discourse Extended.","post.get: Use this skill when you need to get a post via Discourse Extended.","[""discourse-extended"",""post"",""get"",""read""]","# post.get
+
+## When to use
+Use this skill when the workflow needs to get a post through the Discourse Extended node in a deterministic way.
+
+## When not to use
+- Do not use this skill for unrelated resources or cross-resource side effects not represented by this operation.
+- Do not use this skill when required identifiers are missing or ambiguous.
+- Do not bypass higher-level workflow guardrails for permission, approval, or validation.
+
+## Required inputs
+- Valid `Discourse API (Discourse Extended)` credentials in n8n.
+- Node parameters for Resource: Post and Operation: get configured with required fields.
+
+## Optional inputs
+- Optional filtering, pagination, simplify/output controls as exposed by the action.
+- Optional metadata and additional fields supported by the Discourse endpoint for this action.
+
+## Execution behavior
+This skill is a thin operational wrapper around Discourse Extended action post.get (Get). It is intended to get a post while preserving n8n workflow-level orchestration and error handling. This action is retrieval-oriented and should not mutate Discourse state.
+
+## Output contract
+- Returns JSON items compatible with downstream n8n nodes.
+- Item count may be one or many depending on operation semantics and pagination settings.
+- Error surfaces should include actionable context for retry or user clarification paths.
+
+## Failure handling
+- Validate required identifiers and payload fields before calling this action.
+- On API errors, capture status/message and return structured error data for the workflow to branch on.
+- Prefer deterministic retries only for transient errors; avoid blind retries on validation/auth failures.
+
+## Safety and guardrails
+- Scope credentials and permissions to the minimum needed for this action.
+- Keep operation-specific validation in workflow logic before execution.
+- Keep the skill aligned with `packages/n8n-nodes-discourse/README.md` whenever behavior changes.
+
+## Related Discourse Extended operation
+- Resource: Post
+- Operation: Get
+- Internal key: post.get
+- Action label: Get a post","[]","git-bfac806","bfac8060378f8c2d678bfd480eab771ed890c8a8","2026-03-03T20:00:47.985Z"
+"post.getManyAll","true","discourse-extended","100","Post - Get Many (All Posts)","Use this skill when you need to get many posts from global post feed via Discourse Extended.","post.getManyAll: Use this skill when you need to get many posts from global post feed via Discourse Extended.","[""discourse-extended"",""post"",""getManyAll"",""get_many_all"",""read"",""list""]","# post.getManyAll
+
+## When to use
+Use this skill when the workflow needs to get many posts from global post feed through the Discourse Extended node in a deterministic way.
+
+## When not to use
+- Do not use this skill for unrelated resources or cross-resource side effects not represented by this operation.
+- Do not use this skill when required identifiers are missing or ambiguous.
+- Do not bypass higher-level workflow guardrails for permission, approval, or validation.
+
+## Required inputs
+- Valid `Discourse API (Discourse Extended)` credentials in n8n.
+- Node parameters for Resource: Post and Operation: getManyAll configured with required fields.
+
+## Optional inputs
+- Optional filtering, pagination, simplify/output controls as exposed by the action.
+- Optional metadata and additional fields supported by the Discourse endpoint for this action.
+- `Return All`/`Limit` controls for result volume management.
+
+## Execution behavior
+This skill is a thin operational wrapper around Discourse Extended action post.getManyAll (Get Many (All Posts)). It is intended to get many posts from global post feed while preserving n8n workflow-level orchestration and error handling. This action is retrieval-oriented and should not mutate Discourse state.
+
+## Output contract
+- Returns JSON items compatible with downstream n8n nodes.
+- Item count may be one or many depending on operation semantics and pagination settings.
+- Error surfaces should include actionable context for retry or user clarification paths.
+- Retrieval list operations can return large payloads; use limits/simplification where possible.
+
+## Failure handling
+- Validate required identifiers and payload fields before calling this action.
+- On API errors, capture status/message and return structured error data for the workflow to branch on.
+- Prefer deterministic retries only for transient errors; avoid blind retries on validation/auth failures.
+
+## Safety and guardrails
+- Scope credentials and permissions to the minimum needed for this action.
+- Keep operation-specific validation in workflow logic before execution.
+- Keep the skill aligned with `packages/n8n-nodes-discourse/README.md` whenever behavior changes.
+
+## Related Discourse Extended operation
+- Resource: Post
+- Operation: Get Many (All Posts)
+- Internal key: post.getManyAll
+- Action label: Get many posts from global post feed","[]","git-bfac806","bfac8060378f8c2d678bfd480eab771ed890c8a8","2026-03-03T20:00:47.985Z"
+"post.getManyTopic","true","discourse-extended","100","Post - Get Many (Topic)","Use this skill when you need to get many posts from a topic via Discourse Extended.","post.getManyTopic: Use this skill when you need to get many posts from a topic via Discourse Extended.","[""discourse-extended"",""post"",""getManyTopic"",""get_many_topic"",""read"",""list""]","# post.getManyTopic
+
+## When to use
+Use this skill when the workflow needs to get many posts from a topic through the Discourse Extended node in a deterministic way.
+
+## When not to use
+- Do not use this skill for unrelated resources or cross-resource side effects not represented by this operation.
+- Do not use this skill when required identifiers are missing or ambiguous.
+- Do not bypass higher-level workflow guardrails for permission, approval, or validation.
+
+## Required inputs
+- Valid `Discourse API (Discourse Extended)` credentials in n8n.
+- Node parameters for Resource: Post and Operation: getManyTopic configured with required fields.
+
+## Optional inputs
+- Optional filtering, pagination, simplify/output controls as exposed by the action.
+- Optional metadata and additional fields supported by the Discourse endpoint for this action.
+- `Return All`/`Limit` controls for result volume management.
+
+## Execution behavior
+This skill is a thin operational wrapper around Discourse Extended action post.getManyTopic (Get Many (Topic)). It is intended to get many posts from a topic while preserving n8n workflow-level orchestration and error handling. This action is retrieval-oriented and should not mutate Discourse state.
+
+## Output contract
+- Returns JSON items compatible with downstream n8n nodes.
+- Item count may be one or many depending on operation semantics and pagination settings.
+- Error surfaces should include actionable context for retry or user clarification paths.
+- Retrieval list operations can return large payloads; use limits/simplification where possible.
+
+## Failure handling
+- Validate required identifiers and payload fields before calling this action.
+- On API errors, capture status/message and return structured error data for the workflow to branch on.
+- Prefer deterministic retries only for transient errors; avoid blind retries on validation/auth failures.
+
+## Safety and guardrails
+- Scope credentials and permissions to the minimum needed for this action.
+- Keep operation-specific validation in workflow logic before execution.
+- Keep the skill aligned with `packages/n8n-nodes-discourse/README.md` whenever behavior changes.
+
+## Related Discourse Extended operation
+- Resource: Post
+- Operation: Get Many (Topic)
+- Internal key: post.getManyTopic
+- Action label: Get many posts from a topic","[]","git-bfac806","bfac8060378f8c2d678bfd480eab771ed890c8a8","2026-03-03T20:00:47.985Z"
+"post.getManyUser","true","discourse-extended","100","Post - Get Many (User)","Use this skill when you need to get many posts from a user activity feed via Discourse Extended.","post.getManyUser: Use this skill when you need to get many posts from a user activity feed via Discourse Extended.","[""discourse-extended"",""post"",""getManyUser"",""get_many_user"",""read"",""list""]","# post.getManyUser
+
+## When to use
+Use this skill when the workflow needs to get many posts from a user activity feed through the Discourse Extended node in a deterministic way.
+
+## When not to use
+- Do not use this skill for unrelated resources or cross-resource side effects not represented by this operation.
+- Do not use this skill when required identifiers are missing or ambiguous.
+- Do not bypass higher-level workflow guardrails for permission, approval, or validation.
+
+## Required inputs
+- Valid `Discourse API (Discourse Extended)` credentials in n8n.
+- Node parameters for Resource: Post and Operation: getManyUser configured with required fields.
+
+## Optional inputs
+- Optional filtering, pagination, simplify/output controls as exposed by the action.
+- Optional metadata and additional fields supported by the Discourse endpoint for this action.
+- `Return All`/`Limit` controls for result volume management.
+
+## Execution behavior
+This skill is a thin operational wrapper around Discourse Extended action post.getManyUser (Get Many (User)). It is intended to get many posts from a user activity feed while preserving n8n workflow-level orchestration and error handling. This action is retrieval-oriented and should not mutate Discourse state.
+
+## Output contract
+- Returns JSON items compatible with downstream n8n nodes.
+- Item count may be one or many depending on operation semantics and pagination settings.
+- Error surfaces should include actionable context for retry or user clarification paths.
+- Retrieval list operations can return large payloads; use limits/simplification where possible.
+
+## Failure handling
+- Validate required identifiers and payload fields before calling this action.
+- On API errors, capture status/message and return structured error data for the workflow to branch on.
+- Prefer deterministic retries only for transient errors; avoid blind retries on validation/auth failures.
+
+## Safety and guardrails
+- Scope credentials and permissions to the minimum needed for this action.
+- Keep operation-specific validation in workflow logic before execution.
+- Keep the skill aligned with `packages/n8n-nodes-discourse/README.md` whenever behavior changes.
+
+## Related Discourse Extended operation
+- Resource: Post
+- Operation: Get Many (User)
+- Internal key: post.getManyUser
+- Action label: Get many posts from a user activity feed","[]","git-bfac806","bfac8060378f8c2d678bfd480eab771ed890c8a8","2026-03-03T20:00:47.985Z"
+"post.getRevisionLatest","true","discourse-extended","100","Post - Get Revision (Latest)","Use this skill when you need to get latest revision of a post via Discourse Extended.","post.getRevisionLatest: Use this skill when you need to get latest revision of a post via Discourse Extended.","[""discourse-extended"",""post"",""getRevisionLatest"",""get_revision_latest"",""read""]","# post.getRevisionLatest
+
+## When to use
+Use this skill when the workflow needs to get latest revision of a post through the Discourse Extended node in a deterministic way.
+
+## When not to use
+- Do not use this skill for unrelated resources or cross-resource side effects not represented by this operation.
+- Do not use this skill when required identifiers are missing or ambiguous.
+- Do not bypass higher-level workflow guardrails for permission, approval, or validation.
+
+## Required inputs
+- Valid `Discourse API (Discourse Extended)` credentials in n8n.
+- Node parameters for Resource: Post and Operation: getRevisionLatest configured with required fields.
+
+## Optional inputs
+- Optional filtering, pagination, simplify/output controls as exposed by the action.
+- Optional metadata and additional fields supported by the Discourse endpoint for this action.
+- Revision selection controls for historical post retrieval paths.
+
+## Execution behavior
+This skill is a thin operational wrapper around Discourse Extended action post.getRevisionLatest (Get Revision (Latest)). It is intended to get latest revision of a post while preserving n8n workflow-level orchestration and error handling. This action is retrieval-oriented and should not mutate Discourse state.
+
+## Output contract
+- Returns JSON items compatible with downstream n8n nodes.
+- Item count may be one or many depending on operation semantics and pagination settings.
+- Error surfaces should include actionable context for retry or user clarification paths.
+
+## Failure handling
+- Validate required identifiers and payload fields before calling this action.
+- On API errors, capture status/message and return structured error data for the workflow to branch on.
+- Prefer deterministic retries only for transient errors; avoid blind retries on validation/auth failures.
+
+## Safety and guardrails
+- Scope credentials and permissions to the minimum needed for this action.
+- Keep operation-specific validation in workflow logic before execution.
+- Keep the skill aligned with `packages/n8n-nodes-discourse/README.md` whenever behavior changes.
+
+## Related Discourse Extended operation
+- Resource: Post
+- Operation: Get Revision (Latest)
+- Internal key: post.getRevisionLatest
+- Action label: Get latest revision of a post","[]","git-bfac806","bfac8060378f8c2d678bfd480eab771ed890c8a8","2026-03-03T20:00:47.985Z"
+"post.getRevisionVersion","true","discourse-extended","100","Post - Get Revision (Version)","Use this skill when you need to get a specific revision of a post via Discourse Extended.","post.getRevisionVersion: Use this skill when you need to get a specific revision of a post via Discourse Extended.","[""discourse-extended"",""post"",""getRevisionVersion"",""get_revision_version"",""read""]","# post.getRevisionVersion
+
+## When to use
+Use this skill when the workflow needs to get a specific revision of a post through the Discourse Extended node in a deterministic way.
+
+## When not to use
+- Do not use this skill for unrelated resources or cross-resource side effects not represented by this operation.
+- Do not use this skill when required identifiers are missing or ambiguous.
+- Do not bypass higher-level workflow guardrails for permission, approval, or validation.
+
+## Required inputs
+- Valid `Discourse API (Discourse Extended)` credentials in n8n.
+- Node parameters for Resource: Post and Operation: getRevisionVersion configured with required fields.
+
+## Optional inputs
+- Optional filtering, pagination, simplify/output controls as exposed by the action.
+- Optional metadata and additional fields supported by the Discourse endpoint for this action.
+- Revision selection controls for historical post retrieval paths.
+
+## Execution behavior
+This skill is a thin operational wrapper around Discourse Extended action post.getRevisionVersion (Get Revision (Version)). It is intended to get a specific revision of a post while preserving n8n workflow-level orchestration and error handling. This action is retrieval-oriented and should not mutate Discourse state.
+
+## Output contract
+- Returns JSON items compatible with downstream n8n nodes.
+- Item count may be one or many depending on operation semantics and pagination settings.
+- Error surfaces should include actionable context for retry or user clarification paths.
+
+## Failure handling
+- Validate required identifiers and payload fields before calling this action.
+- On API errors, capture status/message and return structured error data for the workflow to branch on.
+- Prefer deterministic retries only for transient errors; avoid blind retries on validation/auth failures.
+
+## Safety and guardrails
+- Scope credentials and permissions to the minimum needed for this action.
+- Keep operation-specific validation in workflow logic before execution.
+- Keep the skill aligned with `packages/n8n-nodes-discourse/README.md` whenever behavior changes.
+
+## Related Discourse Extended operation
+- Resource: Post
+- Operation: Get Revision (Version)
+- Internal key: post.getRevisionVersion
+- Action label: Get a specific revision of a post","[]","git-bfac806","bfac8060378f8c2d678bfd480eab771ed890c8a8","2026-03-03T20:00:47.985Z"
+"post.like","true","discourse-extended","80","Post - Like","Use this skill when you need to like a post via Discourse Extended.","post.like: Use this skill when you need to like a post via Discourse Extended.","[""discourse-extended"",""post"",""like"",""write""]","# post.like
+
+## When to use
+Use this skill when the workflow needs to like a post through the Discourse Extended node in a deterministic way.
+
+## When not to use
+- Do not use this skill for unrelated resources or cross-resource side effects not represented by this operation.
+- Do not use this skill when required identifiers are missing or ambiguous.
+- Do not bypass higher-level workflow guardrails for permission, approval, or validation.
+
+## Required inputs
+- Valid `Discourse API (Discourse Extended)` credentials in n8n.
+- Node parameters for Resource: Post and Operation: like configured with required fields.
+
+## Optional inputs
+- Optional filtering, pagination, simplify/output controls as exposed by the action.
+- Optional metadata and additional fields supported by the Discourse endpoint for this action.
+
+## Execution behavior
+This skill is a thin operational wrapper around Discourse Extended action post.like (Like). It is intended to like a post while preserving n8n workflow-level orchestration and error handling. This action mutates Discourse state and should be used when the workflow explicitly needs to create/update/set entities.
+
+## Output contract
+- Returns JSON items compatible with downstream n8n nodes.
+- Item count may be one or many depending on operation semantics and pagination settings.
+- Error surfaces should include actionable context for retry or user clarification paths.
+
+## Failure handling
+- Validate required identifiers and payload fields before calling this action.
+- On API errors, capture status/message and return structured error data for the workflow to branch on.
+- Prefer deterministic retries only for transient errors; avoid blind retries on validation/auth failures.
+
+## Safety and guardrails
+- Scope credentials and permissions to the minimum needed for this action.
+- Keep operation-specific validation in workflow logic before execution.
+- Keep the skill aligned with `packages/n8n-nodes-discourse/README.md` whenever behavior changes.
+
+## Related Discourse Extended operation
+- Resource: Post
+- Operation: Like
+- Internal key: post.like
+- Action label: Like a post","[]","git-bfac806","bfac8060378f8c2d678bfd480eab771ed890c8a8","2026-03-03T20:00:47.985Z"
+"post.prepareForTts","true","discourse-extended","90","Post - Prepare for TTS","Use this skill when you need to prepare post text for TTS via Discourse Extended.","post.prepareForTts: Use this skill when you need to prepare post text for TTS via Discourse Extended.","[""discourse-extended"",""post"",""prepareForTts"",""prepare_for_tts"",""analysis"",""tts""]","# post.prepareForTts
+
+## When to use
+Use this skill when the workflow needs to prepare post text for TTS through the Discourse Extended node in a deterministic way.
+
+## When not to use
+- Do not use this skill for unrelated resources or cross-resource side effects not represented by this operation.
+- Do not use this skill when required identifiers are missing or ambiguous.
+- Do not bypass higher-level workflow guardrails for permission, approval, or validation.
+
+## Required inputs
+- Valid `Discourse API (Discourse Extended)` credentials in n8n.
+- Node parameters for Resource: Post and Operation: prepareForTts configured with required fields.
+
+## Optional inputs
+- Optional filtering, pagination, simplify/output controls as exposed by the action.
+- Optional metadata and additional fields supported by the Discourse endpoint for this action.
+
+## Execution behavior
+This skill is a thin operational wrapper around Discourse Extended action post.prepareForTts (Prepare for TTS). It is intended to prepare post text for TTS while preserving n8n workflow-level orchestration and error handling. This action transforms or analyzes content and may prepare data for downstream generation/execution.
+
+## Output contract
+- Returns JSON items compatible with downstream n8n nodes.
+- Item count may be one or many depending on operation semantics and pagination settings.
+- Error surfaces should include actionable context for retry or user clarification paths.
+
+## Failure handling
+- Validate required identifiers and payload fields before calling this action.
+- On API errors, capture status/message and return structured error data for the workflow to branch on.
+- Prefer deterministic retries only for transient errors; avoid blind retries on validation/auth failures.
+
+## Safety and guardrails
+- Scope credentials and permissions to the minimum needed for this action.
+- Keep operation-specific validation in workflow logic before execution.
+- Keep the skill aligned with `packages/n8n-nodes-discourse/README.md` whenever behavior changes.
+
+## Related Discourse Extended operation
+- Resource: Post
+- Operation: Prepare for TTS
+- Internal key: post.prepareForTts
+- Action label: Prepare post text for TTS","[]","git-bfac806","bfac8060378f8c2d678bfd480eab771ed890c8a8","2026-03-03T20:00:47.985Z"
+"post.recover","true","discourse-extended","60","Post - Recover","Use this skill when you need to recover a deleted post via Discourse Extended.","post.recover: Use this skill when you need to recover a deleted post via Discourse Extended.","[""discourse-extended"",""post"",""recover"",""restorative""]","# post.recover
+
+## When to use
+Use this skill when the workflow needs to recover a deleted post through the Discourse Extended node in a deterministic way.
+
+## When not to use
+- Do not use this skill for unrelated resources or cross-resource side effects not represented by this operation.
+- Do not use this skill when required identifiers are missing or ambiguous.
+- Do not bypass higher-level workflow guardrails for permission, approval, or validation.
+
+## Required inputs
+- Valid `Discourse API (Discourse Extended)` credentials in n8n.
+- Node parameters for Resource: Post and Operation: recover configured with required fields.
+
+## Optional inputs
+- Optional filtering, pagination, simplify/output controls as exposed by the action.
+- Optional metadata and additional fields supported by the Discourse endpoint for this action.
+
+## Execution behavior
+This skill is a thin operational wrapper around Discourse Extended action post.recover (Recover). It is intended to recover a deleted post while preserving n8n workflow-level orchestration and error handling. This action restores prior state and should only be used when recovery is explicitly requested.
+
+## Output contract
+- Returns JSON items compatible with downstream n8n nodes.
+- Item count may be one or many depending on operation semantics and pagination settings.
+- Error surfaces should include actionable context for retry or user clarification paths.
+
+## Failure handling
+- Validate required identifiers and payload fields before calling this action.
+- On API errors, capture status/message and return structured error data for the workflow to branch on.
+- Prefer deterministic retries only for transient errors; avoid blind retries on validation/auth failures.
+
+## Safety and guardrails
+- Scope credentials and permissions to the minimum needed for this action.
+- Keep operation-specific validation in workflow logic before execution.
+- Keep the skill aligned with `packages/n8n-nodes-discourse/README.md` whenever behavior changes.
+
+## Related Discourse Extended operation
+- Resource: Post
+- Operation: Recover
+- Internal key: post.recover
+- Action label: Recover a deleted post","[]","git-bfac806","bfac8060378f8c2d678bfd480eab771ed890c8a8","2026-03-03T20:00:47.985Z"
+"post.unbookmark","true","discourse-extended","40","Post - Unbookmark","Use this skill when you need to remove bookmark from a post via Discourse Extended.","post.unbookmark: Use this skill when you need to remove bookmark from a post via Discourse Extended.","[""discourse-extended"",""post"",""unbookmark"",""destructive"",""removal""]","# post.unbookmark
+
+## When to use
+Use this skill when the workflow needs to remove bookmark from a post through the Discourse Extended node in a deterministic way.
+
+## When not to use
+- Do not use this skill for unrelated resources or cross-resource side effects not represented by this operation.
+- Do not use this skill when required identifiers are missing or ambiguous.
+- Do not bypass higher-level workflow guardrails for permission, approval, or validation.
+
+## Required inputs
+- Valid `Discourse API (Discourse Extended)` credentials in n8n.
+- Node parameters for Resource: Post and Operation: unbookmark configured with required fields.
+- Explicit target ID/key to avoid accidental destructive operations.
+
+## Optional inputs
+- Optional filtering, pagination, simplify/output controls as exposed by the action.
+- Optional metadata and additional fields supported by the Discourse endpoint for this action.
+
+## Execution behavior
+This skill is a thin operational wrapper around Discourse Extended action post.unbookmark (Unbookmark). It is intended to remove bookmark from a post while preserving n8n workflow-level orchestration and error handling. This action is destructive/removal-oriented and should be gated by strict workflow guardrails.
+
+## Output contract
+- Returns JSON items compatible with downstream n8n nodes.
+- Item count may be one or many depending on operation semantics and pagination settings.
+- Error surfaces should include actionable context for retry or user clarification paths.
+
+## Failure handling
+- Validate required identifiers and payload fields before calling this action.
+- On API errors, capture status/message and return structured error data for the workflow to branch on.
+- Prefer deterministic retries only for transient errors; avoid blind retries on validation/auth failures.
+
+## Safety and guardrails
+- Treat as high-risk: require explicit user/workflow intent before execution.
+- Prefer ID-based targeting over ambiguous text lookups.
+- Log actor, target, and reason for auditability.
+
+## Related Discourse Extended operation
+- Resource: Post
+- Operation: Unbookmark
+- Internal key: post.unbookmark
+- Action label: Remove bookmark from a post","[]","git-bfac806","bfac8060378f8c2d678bfd480eab771ed890c8a8","2026-03-03T20:00:47.985Z"
+"post.unlike","true","discourse-extended","40","Post - Unlike","Use this skill when you need to remove like from a post via Discourse Extended.","post.unlike: Use this skill when you need to remove like from a post via Discourse Extended.","[""discourse-extended"",""post"",""unlike"",""destructive"",""removal""]","# post.unlike
+
+## When to use
+Use this skill when the workflow needs to remove like from a post through the Discourse Extended node in a deterministic way.
+
+## When not to use
+- Do not use this skill for unrelated resources or cross-resource side effects not represented by this operation.
+- Do not use this skill when required identifiers are missing or ambiguous.
+- Do not bypass higher-level workflow guardrails for permission, approval, or validation.
+
+## Required inputs
+- Valid `Discourse API (Discourse Extended)` credentials in n8n.
+- Node parameters for Resource: Post and Operation: unlike configured with required fields.
+- Explicit target ID/key to avoid accidental destructive operations.
+
+## Optional inputs
+- Optional filtering, pagination, simplify/output controls as exposed by the action.
+- Optional metadata and additional fields supported by the Discourse endpoint for this action.
+
+## Execution behavior
+This skill is a thin operational wrapper around Discourse Extended action post.unlike (Unlike). It is intended to remove like from a post while preserving n8n workflow-level orchestration and error handling. This action is destructive/removal-oriented and should be gated by strict workflow guardrails.
+
+## Output contract
+- Returns JSON items compatible with downstream n8n nodes.
+- Item count may be one or many depending on operation semantics and pagination settings.
+- Error surfaces should include actionable context for retry or user clarification paths.
+
+## Failure handling
+- Validate required identifiers and payload fields before calling this action.
+- On API errors, capture status/message and return structured error data for the workflow to branch on.
+- Prefer deterministic retries only for transient errors; avoid blind retries on validation/auth failures.
+
+## Safety and guardrails
+- Treat as high-risk: require explicit user/workflow intent before execution.
+- Prefer ID-based targeting over ambiguous text lookups.
+- Log actor, target, and reason for auditability.
+
+## Related Discourse Extended operation
+- Resource: Post
+- Operation: Unlike
+- Internal key: post.unlike
+- Action label: Remove like from a post","[]","git-bfac806","bfac8060378f8c2d678bfd480eab771ed890c8a8","2026-03-03T20:00:47.985Z"
+"post.update","true","discourse-extended","80","Post - Update","Use this skill when you need to update a post via Discourse Extended.","post.update: Use this skill when you need to update a post via Discourse Extended.","[""discourse-extended"",""post"",""update"",""write""]","# post.update
+
+## When to use
+Use this skill when the workflow needs to update a post through the Discourse Extended node in a deterministic way.
+
+## When not to use
+- Do not use this skill for unrelated resources or cross-resource side effects not represented by this operation.
+- Do not use this skill when required identifiers are missing or ambiguous.
+- Do not bypass higher-level workflow guardrails for permission, approval, or validation.
+
+## Required inputs
+- Valid `Discourse API (Discourse Extended)` credentials in n8n.
+- Node parameters for Resource: Post and Operation: update configured with required fields.
+
+## Optional inputs
+- Optional filtering, pagination, simplify/output controls as exposed by the action.
+- Optional metadata and additional fields supported by the Discourse endpoint for this action.
+
+## Execution behavior
+This skill is a thin operational wrapper around Discourse Extended action post.update (Update). It is intended to update a post while preserving n8n workflow-level orchestration and error handling. This action mutates Discourse state and should be used when the workflow explicitly needs to create/update/set entities.
+
+## Output contract
+- Returns JSON items compatible with downstream n8n nodes.
+- Item count may be one or many depending on operation semantics and pagination settings.
+- Error surfaces should include actionable context for retry or user clarification paths.
+
+## Failure handling
+- Validate required identifiers and payload fields before calling this action.
+- On API errors, capture status/message and return structured error data for the workflow to branch on.
+- Prefer deterministic retries only for transient errors; avoid blind retries on validation/auth failures.
+
+## Safety and guardrails
+- Scope credentials and permissions to the minimum needed for this action.
+- Keep operation-specific validation in workflow logic before execution.
+- Keep the skill aligned with `packages/n8n-nodes-discourse/README.md` whenever behavior changes.
+
+## Related Discourse Extended operation
+- Resource: Post
+- Operation: Update
+- Internal key: post.update
+- Action label: Update a post","[]","git-bfac806","bfac8060378f8c2d678bfd480eab771ed890c8a8","2026-03-03T20:00:47.985Z"
+"topic.create","true","discourse-extended","80","Topic - Create","Use this skill when you need to create a topic via Discourse Extended.","topic.create: Use this skill when you need to create a topic via Discourse Extended.","[""discourse-extended"",""topic"",""create"",""write""]","# topic.create
+
+## When to use
+Use this skill when the workflow needs to create a topic through the Discourse Extended node in a deterministic way.
+
+## When not to use
+- Do not use this skill for unrelated resources or cross-resource side effects not represented by this operation.
+- Do not use this skill when required identifiers are missing or ambiguous.
+- Do not bypass higher-level workflow guardrails for permission, approval, or validation.
+
+## Required inputs
+- Valid `Discourse API (Discourse Extended)` credentials in n8n.
+- Node parameters for Resource: Topic and Operation: create configured with required fields.
+
+## Optional inputs
+- Optional filtering, pagination, simplify/output controls as exposed by the action.
+- Optional metadata and additional fields supported by the Discourse endpoint for this action.
+
+## Execution behavior
+This skill is a thin operational wrapper around Discourse Extended action topic.create (Create). It is intended to create a topic while preserving n8n workflow-level orchestration and error handling. This action mutates Discourse state and should be used when the workflow explicitly needs to create/update/set entities.
+
+## Output contract
+- Returns JSON items compatible with downstream n8n nodes.
+- Item count may be one or many depending on operation semantics and pagination settings.
+- Error surfaces should include actionable context for retry or user clarification paths.
+
+## Failure handling
+- Validate required identifiers and payload fields before calling this action.
+- On API errors, capture status/message and return structured error data for the workflow to branch on.
+- Prefer deterministic retries only for transient errors; avoid blind retries on validation/auth failures.
+
+## Safety and guardrails
+- Scope credentials and permissions to the minimum needed for this action.
+- Keep operation-specific validation in workflow logic before execution.
+- Keep the skill aligned with `packages/n8n-nodes-discourse/README.md` whenever behavior changes.
+
+## Related Discourse Extended operation
+- Resource: Topic
+- Operation: Create
+- Internal key: topic.create
+- Action label: Create a topic","[]","git-bfac806","bfac8060378f8c2d678bfd480eab771ed890c8a8","2026-03-03T20:00:47.985Z"
+"topic.delete","true","discourse-extended","40","Topic - Delete","Use this skill when you need to delete a topic via Discourse Extended.","topic.delete: Use this skill when you need to delete a topic via Discourse Extended.","[""discourse-extended"",""topic"",""delete"",""destructive"",""removal""]","# topic.delete
+
+## When to use
+Use this skill when the workflow needs to delete a topic through the Discourse Extended node in a deterministic way.
+
+## When not to use
+- Do not use this skill for unrelated resources or cross-resource side effects not represented by this operation.
+- Do not use this skill when required identifiers are missing or ambiguous.
+- Do not bypass higher-level workflow guardrails for permission, approval, or validation.
+
+## Required inputs
+- Valid `Discourse API (Discourse Extended)` credentials in n8n.
+- Node parameters for Resource: Topic and Operation: delete configured with required fields.
+- Explicit target ID/key to avoid accidental destructive operations.
+
+## Optional inputs
+- Optional filtering, pagination, simplify/output controls as exposed by the action.
+- Optional metadata and additional fields supported by the Discourse endpoint for this action.
+
+## Execution behavior
+This skill is a thin operational wrapper around Discourse Extended action topic.delete (Delete). It is intended to delete a topic while preserving n8n workflow-level orchestration and error handling. This action is destructive/removal-oriented and should be gated by strict workflow guardrails.
+
+## Output contract
+- Returns JSON items compatible with downstream n8n nodes.
+- Item count may be one or many depending on operation semantics and pagination settings.
+- Error surfaces should include actionable context for retry or user clarification paths.
+
+## Failure handling
+- Validate required identifiers and payload fields before calling this action.
+- On API errors, capture status/message and return structured error data for the workflow to branch on.
+- Prefer deterministic retries only for transient errors; avoid blind retries on validation/auth failures.
+
+## Safety and guardrails
+- Treat as high-risk: require explicit user/workflow intent before execution.
+- Prefer ID-based targeting over ambiguous text lookups.
+- Log actor, target, and reason for auditability.
+
+## Related Discourse Extended operation
+- Resource: Topic
+- Operation: Delete
+- Internal key: topic.delete
+- Action label: Delete a topic","[]","git-bfac806","bfac8060378f8c2d678bfd480eab771ed890c8a8","2026-03-03T20:00:47.985Z"
+"topic.get","true","discourse-extended","100","Topic - Get","Use this skill when you need to get a topic via Discourse Extended.","topic.get: Use this skill when you need to get a topic via Discourse Extended.","[""discourse-extended"",""topic"",""get"",""read""]","# topic.get
+
+## When to use
+Use this skill when the workflow needs to get a topic through the Discourse Extended node in a deterministic way.
+
+## When not to use
+- Do not use this skill for unrelated resources or cross-resource side effects not represented by this operation.
+- Do not use this skill when required identifiers are missing or ambiguous.
+- Do not bypass higher-level workflow guardrails for permission, approval, or validation.
+
+## Required inputs
+- Valid `Discourse API (Discourse Extended)` credentials in n8n.
+- Node parameters for Resource: Topic and Operation: get configured with required fields.
+
+## Optional inputs
+- Optional filtering, pagination, simplify/output controls as exposed by the action.
+- Optional metadata and additional fields supported by the Discourse endpoint for this action.
+
+## Execution behavior
+This skill is a thin operational wrapper around Discourse Extended action topic.get (Get). It is intended to get a topic while preserving n8n workflow-level orchestration and error handling. This action is retrieval-oriented and should not mutate Discourse state.
+
+## Output contract
+- Returns JSON items compatible with downstream n8n nodes.
+- Item count may be one or many depending on operation semantics and pagination settings.
+- Error surfaces should include actionable context for retry or user clarification paths.
+
+## Failure handling
+- Validate required identifiers and payload fields before calling this action.
+- On API errors, capture status/message and return structured error data for the workflow to branch on.
+- Prefer deterministic retries only for transient errors; avoid blind retries on validation/auth failures.
+
+## Safety and guardrails
+- Scope credentials and permissions to the minimum needed for this action.
+- Keep operation-specific validation in workflow logic before execution.
+- Keep the skill aligned with `packages/n8n-nodes-discourse/README.md` whenever behavior changes.
+
+## Related Discourse Extended operation
+- Resource: Topic
+- Operation: Get
+- Internal key: topic.get
+- Action label: Get a topic","[]","git-bfac806","bfac8060378f8c2d678bfd480eab771ed890c8a8","2026-03-03T20:00:47.985Z"
+"topic.getManyLatest","true","discourse-extended","100","Topic - Get Many (Latest)","Use this skill when you need to get latest topics via Discourse Extended.","topic.getManyLatest: Use this skill when you need to get latest topics via Discourse Extended.","[""discourse-extended"",""topic"",""getManyLatest"",""get_many_latest"",""read"",""list""]","# topic.getManyLatest
+
+## When to use
+Use this skill when the workflow needs to get latest topics through the Discourse Extended node in a deterministic way.
+
+## When not to use
+- Do not use this skill for unrelated resources or cross-resource side effects not represented by this operation.
+- Do not use this skill when required identifiers are missing or ambiguous.
+- Do not bypass higher-level workflow guardrails for permission, approval, or validation.
+
+## Required inputs
+- Valid `Discourse API (Discourse Extended)` credentials in n8n.
+- Node parameters for Resource: Topic and Operation: getManyLatest configured with required fields.
+
+## Optional inputs
+- Optional filtering, pagination, simplify/output controls as exposed by the action.
+- Optional metadata and additional fields supported by the Discourse endpoint for this action.
+- `Return All`/`Limit` controls for result volume management.
+
+## Execution behavior
+This skill is a thin operational wrapper around Discourse Extended action topic.getManyLatest (Get Many (Latest)). It is intended to get latest topics while preserving n8n workflow-level orchestration and error handling. This action is retrieval-oriented and should not mutate Discourse state.
+
+## Output contract
+- Returns JSON items compatible with downstream n8n nodes.
+- Item count may be one or many depending on operation semantics and pagination settings.
+- Error surfaces should include actionable context for retry or user clarification paths.
+- Retrieval list operations can return large payloads; use limits/simplification where possible.
+
+## Failure handling
+- Validate required identifiers and payload fields before calling this action.
+- On API errors, capture status/message and return structured error data for the workflow to branch on.
+- Prefer deterministic retries only for transient errors; avoid blind retries on validation/auth failures.
+
+## Safety and guardrails
+- Scope credentials and permissions to the minimum needed for this action.
+- Keep operation-specific validation in workflow logic before execution.
+- Keep the skill aligned with `packages/n8n-nodes-discourse/README.md` whenever behavior changes.
+
+## Related Discourse Extended operation
+- Resource: Topic
+- Operation: Get Many (Latest)
+- Internal key: topic.getManyLatest
+- Action label: Get latest topics","[]","git-bfac806","bfac8060378f8c2d678bfd480eab771ed890c8a8","2026-03-03T20:00:47.985Z"
+"topic.getManyTop","true","discourse-extended","100","Topic - Get Many (Top)","Use this skill when you need to get top topics via Discourse Extended.","topic.getManyTop: Use this skill when you need to get top topics via Discourse Extended.","[""discourse-extended"",""topic"",""getManyTop"",""get_many_top"",""read"",""list""]","# topic.getManyTop
+
+## When to use
+Use this skill when the workflow needs to get top topics through the Discourse Extended node in a deterministic way.
+
+## When not to use
+- Do not use this skill for unrelated resources or cross-resource side effects not represented by this operation.
+- Do not use this skill when required identifiers are missing or ambiguous.
+- Do not bypass higher-level workflow guardrails for permission, approval, or validation.
+
+## Required inputs
+- Valid `Discourse API (Discourse Extended)` credentials in n8n.
+- Node parameters for Resource: Topic and Operation: getManyTop configured with required fields.
+
+## Optional inputs
+- Optional filtering, pagination, simplify/output controls as exposed by the action.
+- Optional metadata and additional fields supported by the Discourse endpoint for this action.
+- `Return All`/`Limit` controls for result volume management.
+
+## Execution behavior
+This skill is a thin operational wrapper around Discourse Extended action topic.getManyTop (Get Many (Top)). It is intended to get top topics while preserving n8n workflow-level orchestration and error handling. This action is retrieval-oriented and should not mutate Discourse state.
+
+## Output contract
+- Returns JSON items compatible with downstream n8n nodes.
+- Item count may be one or many depending on operation semantics and pagination settings.
+- Error surfaces should include actionable context for retry or user clarification paths.
+- Retrieval list operations can return large payloads; use limits/simplification where possible.
+
+## Failure handling
+- Validate required identifiers and payload fields before calling this action.
+- On API errors, capture status/message and return structured error data for the workflow to branch on.
+- Prefer deterministic retries only for transient errors; avoid blind retries on validation/auth failures.
+
+## Safety and guardrails
+- Scope credentials and permissions to the minimum needed for this action.
+- Keep operation-specific validation in workflow logic before execution.
+- Keep the skill aligned with `packages/n8n-nodes-discourse/README.md` whenever behavior changes.
+
+## Related Discourse Extended operation
+- Resource: Topic
+- Operation: Get Many (Top)
+- Internal key: topic.getManyTop
+- Action label: Get top topics","[]","git-bfac806","bfac8060378f8c2d678bfd480eab771ed890c8a8","2026-03-03T20:00:47.985Z"
+"topic.search","true","discourse-extended","100","Topic - Search","Use this skill when you need to search topics via Discourse Extended.","topic.search: Use this skill when you need to search topics via Discourse Extended.","[""discourse-extended"",""topic"",""search"",""read""]","# topic.search
+
+## When to use
+Use this skill when the workflow needs to search topics through the Discourse Extended node in a deterministic way.
+
+## When not to use
+- Do not use this skill for unrelated resources or cross-resource side effects not represented by this operation.
+- Do not use this skill when required identifiers are missing or ambiguous.
+- Do not bypass higher-level workflow guardrails for permission, approval, or validation.
+
+## Required inputs
+- Valid `Discourse API (Discourse Extended)` credentials in n8n.
+- Node parameters for Resource: Topic and Operation: search configured with required fields.
+
+## Optional inputs
+- Optional filtering, pagination, simplify/output controls as exposed by the action.
+- Optional metadata and additional fields supported by the Discourse endpoint for this action.
+
+## Execution behavior
+This skill is a thin operational wrapper around Discourse Extended action topic.search (Search). It is intended to search topics while preserving n8n workflow-level orchestration and error handling. This action is retrieval-oriented and should not mutate Discourse state.
+
+## Output contract
+- Returns JSON items compatible with downstream n8n nodes.
+- Item count may be one or many depending on operation semantics and pagination settings.
+- Error surfaces should include actionable context for retry or user clarification paths.
+
+## Failure handling
+- Validate required identifiers and payload fields before calling this action.
+- On API errors, capture status/message and return structured error data for the workflow to branch on.
+- Prefer deterministic retries only for transient errors; avoid blind retries on validation/auth failures.
+
+## Safety and guardrails
+- Scope credentials and permissions to the minimum needed for this action.
+- Keep operation-specific validation in workflow logic before execution.
+- Keep the skill aligned with `packages/n8n-nodes-discourse/README.md` whenever behavior changes.
+
+## Related Discourse Extended operation
+- Resource: Topic
+- Operation: Search
+- Internal key: topic.search
+- Action label: Search topics","[]","git-bfac806","bfac8060378f8c2d678bfd480eab771ed890c8a8","2026-03-03T20:00:47.985Z"
+"topic.setStatus","true","discourse-extended","80","Topic - Set Status","Use this skill when you need to set topic status via Discourse Extended.","topic.setStatus: Use this skill when you need to set topic status via Discourse Extended.","[""discourse-extended"",""topic"",""setStatus"",""set_status"",""write""]","# topic.setStatus
+
+## When to use
+Use this skill when the workflow needs to set topic status through the Discourse Extended node in a deterministic way.
+
+## When not to use
+- Do not use this skill for unrelated resources or cross-resource side effects not represented by this operation.
+- Do not use this skill when required identifiers are missing or ambiguous.
+- Do not bypass higher-level workflow guardrails for permission, approval, or validation.
+
+## Required inputs
+- Valid `Discourse API (Discourse Extended)` credentials in n8n.
+- Node parameters for Resource: Topic and Operation: setStatus configured with required fields.
+
+## Optional inputs
+- Optional filtering, pagination, simplify/output controls as exposed by the action.
+- Optional metadata and additional fields supported by the Discourse endpoint for this action.
+
+## Execution behavior
+This skill is a thin operational wrapper around Discourse Extended action topic.setStatus (Set Status). It is intended to set topic status while preserving n8n workflow-level orchestration and error handling. This action mutates Discourse state and should be used when the workflow explicitly needs to create/update/set entities.
+
+## Output contract
+- Returns JSON items compatible with downstream n8n nodes.
+- Item count may be one or many depending on operation semantics and pagination settings.
+- Error surfaces should include actionable context for retry or user clarification paths.
+
+## Failure handling
+- Validate required identifiers and payload fields before calling this action.
+- On API errors, capture status/message and return structured error data for the workflow to branch on.
+- Prefer deterministic retries only for transient errors; avoid blind retries on validation/auth failures.
+
+## Safety and guardrails
+- Scope credentials and permissions to the minimum needed for this action.
+- Keep operation-specific validation in workflow logic before execution.
+- Keep the skill aligned with `packages/n8n-nodes-discourse/README.md` whenever behavior changes.
+
+## Related Discourse Extended operation
+- Resource: Topic
+- Operation: Set Status
+- Internal key: topic.setStatus
+- Action label: Set topic status","[]","git-bfac806","bfac8060378f8c2d678bfd480eab771ed890c8a8","2026-03-03T20:00:47.985Z"
+"topic.update","true","discourse-extended","80","Topic - Update","Use this skill when you need to update a topic via Discourse Extended.","topic.update: Use this skill when you need to update a topic via Discourse Extended.","[""discourse-extended"",""topic"",""update"",""write""]","# topic.update
+
+## When to use
+Use this skill when the workflow needs to update a topic through the Discourse Extended node in a deterministic way.
+
+## When not to use
+- Do not use this skill for unrelated resources or cross-resource side effects not represented by this operation.
+- Do not use this skill when required identifiers are missing or ambiguous.
+- Do not bypass higher-level workflow guardrails for permission, approval, or validation.
+
+## Required inputs
+- Valid `Discourse API (Discourse Extended)` credentials in n8n.
+- Node parameters for Resource: Topic and Operation: update configured with required fields.
+
+## Optional inputs
+- Optional filtering, pagination, simplify/output controls as exposed by the action.
+- Optional metadata and additional fields supported by the Discourse endpoint for this action.
+
+## Execution behavior
+This skill is a thin operational wrapper around Discourse Extended action topic.update (Update). It is intended to update a topic while preserving n8n workflow-level orchestration and error handling. This action mutates Discourse state and should be used when the workflow explicitly needs to create/update/set entities.
+
+## Output contract
+- Returns JSON items compatible with downstream n8n nodes.
+- Item count may be one or many depending on operation semantics and pagination settings.
+- Error surfaces should include actionable context for retry or user clarification paths.
+
+## Failure handling
+- Validate required identifiers and payload fields before calling this action.
+- On API errors, capture status/message and return structured error data for the workflow to branch on.
+- Prefer deterministic retries only for transient errors; avoid blind retries on validation/auth failures.
+
+## Safety and guardrails
+- Scope credentials and permissions to the minimum needed for this action.
+- Keep operation-specific validation in workflow logic before execution.
+- Keep the skill aligned with `packages/n8n-nodes-discourse/README.md` whenever behavior changes.
+
+## Related Discourse Extended operation
+- Resource: Topic
+- Operation: Update
+- Internal key: topic.update
+- Action label: Update a topic","[]","git-bfac806","bfac8060378f8c2d678bfd480eab771ed890c8a8","2026-03-03T20:00:47.985Z"
+"upload.create","true","discourse-extended","70","Upload - Create","Use this skill when you need to create an upload via Discourse Extended.","upload.create: Use this skill when you need to create an upload via Discourse Extended.","[""discourse-extended"",""upload"",""create"",""external_io"",""object-storage""]","# upload.create
+
+## When to use
+Use this skill when the workflow needs to create an upload through the Discourse Extended node in a deterministic way.
+
+## When not to use
+- Do not use this skill for unrelated resources or cross-resource side effects not represented by this operation.
+- Do not use this skill when required identifiers are missing or ambiguous.
+- Do not bypass higher-level workflow guardrails for permission, approval, or validation.
+
+## Required inputs
+- Valid `Discourse API (Discourse Extended)` credentials in n8n.
+- Node parameters for Resource: Upload and Operation: create configured with required fields.
+- Object storage-related fields and credentials when uploading artifacts or source data.
+
+## Optional inputs
+- Optional filtering, pagination, simplify/output controls as exposed by the action.
+- Optional metadata and additional fields supported by the Discourse endpoint for this action.
+
+## Execution behavior
+This skill is a thin operational wrapper around Discourse Extended action upload.create (Create). It is intended to create an upload while preserving n8n workflow-level orchestration and error handling. This action includes non-trivial external IO (for example media generation or object storage upload).
+
+## Output contract
+- Returns JSON items compatible with downstream n8n nodes.
+- Item count may be one or many depending on operation semantics and pagination settings.
+- Error surfaces should include actionable context for retry or user clarification paths.
+- May include binary artifacts and/or generated file metadata for downstream transport/storage nodes.
+
+## Failure handling
+- Validate required identifiers and payload fields before calling this action.
+- On API errors, capture status/message and return structured error data for the workflow to branch on.
+- Prefer deterministic retries only for transient errors; avoid blind retries on validation/auth failures.
+- For long-running or chunked generation/upload paths, use bounded retries with backoff and preserve partial diagnostics.
+
+## Safety and guardrails
+- Scope credentials and permissions to the minimum needed for this action.
+- Keep operation-specific validation in workflow logic before execution.
+- Keep the skill aligned with `packages/n8n-nodes-discourse/README.md` whenever behavior changes.
+
+## Related Discourse Extended operation
+- Resource: Upload
+- Operation: Create
+- Internal key: upload.create
+- Action label: Create an upload","[]","git-bfac806","bfac8060378f8c2d678bfd480eab771ed890c8a8","2026-03-03T20:00:47.985Z"
+"upload.createFromSourceUrl","true","discourse-extended","70","Upload - Create From Source URL","Use this skill when you need to create an upload from source URL via Discourse Extended.","upload.createFromSourceUrl: Use this skill when you need to create an upload from source URL via Discourse Extended.","[""discourse-extended"",""upload"",""createFromSourceUrl"",""create_from_source_url"",""external_io"",""object-storage""]","# upload.createFromSourceUrl
+
+## When to use
+Use this skill when the workflow needs to create an upload from source URL through the Discourse Extended node in a deterministic way.
+
+## When not to use
+- Do not use this skill for unrelated resources or cross-resource side effects not represented by this operation.
+- Do not use this skill when required identifiers are missing or ambiguous.
+- Do not bypass higher-level workflow guardrails for permission, approval, or validation.
+
+## Required inputs
+- Valid `Discourse API (Discourse Extended)` credentials in n8n.
+- Node parameters for Resource: Upload and Operation: createFromSourceUrl configured with required fields.
+- Object storage-related fields and credentials when uploading artifacts or source data.
+
+## Optional inputs
+- Optional filtering, pagination, simplify/output controls as exposed by the action.
+- Optional metadata and additional fields supported by the Discourse endpoint for this action.
+
+## Execution behavior
+This skill is a thin operational wrapper around Discourse Extended action upload.createFromSourceUrl (Create From Source URL). It is intended to create an upload from source URL while preserving n8n workflow-level orchestration and error handling. This action includes non-trivial external IO (for example media generation or object storage upload).
+
+## Output contract
+- Returns JSON items compatible with downstream n8n nodes.
+- Item count may be one or many depending on operation semantics and pagination settings.
+- Error surfaces should include actionable context for retry or user clarification paths.
+- May include binary artifacts and/or generated file metadata for downstream transport/storage nodes.
+
+## Failure handling
+- Validate required identifiers and payload fields before calling this action.
+- On API errors, capture status/message and return structured error data for the workflow to branch on.
+- Prefer deterministic retries only for transient errors; avoid blind retries on validation/auth failures.
+- For long-running or chunked generation/upload paths, use bounded retries with backoff and preserve partial diagnostics.
+
+## Safety and guardrails
+- Scope credentials and permissions to the minimum needed for this action.
+- Keep operation-specific validation in workflow logic before execution.
+- Keep the skill aligned with `packages/n8n-nodes-discourse/README.md` whenever behavior changes.
+
+## Related Discourse Extended operation
+- Resource: Upload
+- Operation: Create From Source URL
+- Internal key: upload.createFromSourceUrl
+- Action label: Create an upload from source URL","[]","git-bfac806","bfac8060378f8c2d678bfd480eab771ed890c8a8","2026-03-03T20:00:47.985Z"
+"upload.uploadToObjectStorage","true","discourse-extended","70","Upload - Upload to Object Storage","Use this skill when you need to upload data to object storage via Discourse Extended.","upload.uploadToObjectStorage: Use this skill when you need to upload data to object storage via Discourse Extended.","[""discourse-extended"",""upload"",""uploadToObjectStorage"",""upload_to_object_storage"",""external_io"",""object-storage""]","# upload.uploadToObjectStorage
+
+## When to use
+Use this skill when the workflow needs to upload data to object storage through the Discourse Extended node in a deterministic way.
+
+## When not to use
+- Do not use this skill for unrelated resources or cross-resource side effects not represented by this operation.
+- Do not use this skill when required identifiers are missing or ambiguous.
+- Do not bypass higher-level workflow guardrails for permission, approval, or validation.
+
+## Required inputs
+- Valid `Discourse API (Discourse Extended)` credentials in n8n.
+- Node parameters for Resource: Upload and Operation: uploadToObjectStorage configured with required fields.
+- Object storage-related fields and credentials when uploading artifacts or source data.
+
+## Optional inputs
+- Optional filtering, pagination, simplify/output controls as exposed by the action.
+- Optional metadata and additional fields supported by the Discourse endpoint for this action.
+
+## Execution behavior
+This skill is a thin operational wrapper around Discourse Extended action upload.uploadToObjectStorage (Upload to Object Storage). It is intended to upload data to object storage while preserving n8n workflow-level orchestration and error handling. This action includes non-trivial external IO (for example media generation or object storage upload).
+
+## Output contract
+- Returns JSON items compatible with downstream n8n nodes.
+- Item count may be one or many depending on operation semantics and pagination settings.
+- Error surfaces should include actionable context for retry or user clarification paths.
+- May include binary artifacts and/or generated file metadata for downstream transport/storage nodes.
+
+## Failure handling
+- Validate required identifiers and payload fields before calling this action.
+- On API errors, capture status/message and return structured error data for the workflow to branch on.
+- Prefer deterministic retries only for transient errors; avoid blind retries on validation/auth failures.
+- For long-running or chunked generation/upload paths, use bounded retries with backoff and preserve partial diagnostics.
+
+## Safety and guardrails
+- Scope credentials and permissions to the minimum needed for this action.
+- Keep operation-specific validation in workflow logic before execution.
+- Keep the skill aligned with `packages/n8n-nodes-discourse/README.md` whenever behavior changes.
+
+## Related Discourse Extended operation
+- Resource: Upload
+- Operation: Upload to Object Storage
+- Internal key: upload.uploadToObjectStorage
+- Action label: Upload data to object storage","[]","git-bfac806","bfac8060378f8c2d678bfd480eab771ed890c8a8","2026-03-03T20:00:47.985Z"
