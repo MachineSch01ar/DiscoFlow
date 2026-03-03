@@ -8,6 +8,56 @@
 
 DiscoFlow is an open-source project for building reliable, programmatic, and cognitively aware workflows around Discourse.
 
+## Get Started (Discourse Admins)
+
+This section is for Discourse admins/operators setting up DiscoFlow on a forum instance. Contributor setup for local development is documented later in this file under `Contributor Quick Start`.
+
+### 1) Choose your n8n path
+
+- **Self-hosted n8n (recommended today):**
+  Use this path for `Discourse Extended` right now. Install and manage community nodes from npm on self-hosted n8n:
+  https://docs.n8n.io/integrations/community-nodes/installation/
+- **n8n Cloud:**
+  n8n Cloud supports installing verified community nodes from the nodes panel:
+  https://docs.n8n.io/integrations/community-nodes/installation/verified-install/
+  If `Discourse Extended` is not listed there yet, use self-hosted n8n for now. We are currently working toward node verification for broader cloud availability.
+
+### 2) Install Discourse Extended
+
+- Package name: `@machinesch01ar/n8n-nodes-discourse`
+- Node name in picker: `Discourse Extended`
+- Self-hosted install path in n8n UI: `Settings -> Community Nodes -> Install` (GUI install details:
+  https://docs.n8n.io/integrations/community-nodes/installation/gui-install/)
+
+### 3) Create credentials
+
+- In Discourse, create an API key for admin automation:
+  https://meta.discourse.org/t/create-and-configure-an-api-key/230124
+- In n8n, create credential type `Discourse API (Discourse Extended)` and set:
+  - `Base URL` (for example, `https://forum.example.com`)
+  - `API Key`
+  - `API Username`
+- Recommended: create the credential from inside the `Discourse Extended` node editor so node access is assigned correctly.
+
+### 4) Run your first test workflow (5 minutes)
+
+1. Add `Manual Trigger`.
+2. Add `Discourse Extended`.
+3. Set:
+   - `Resource = Topic`
+   - `Operation = Get Many (Latest)`
+   - `Limit = 5`
+   - `Simplify = true`
+4. Execute the workflow.
+5. Success criteria: you get recent topics from your forum without auth/permission errors.
+
+### 5) Next steps
+
+- For full operation coverage and advanced behavior, use the package README:
+  [`packages/n8n-nodes-discourse/README.md`](packages/n8n-nodes-discourse/README.md)
+- Discourse API reference:
+  https://docs.discourse.org/
+
 ## Mission
 
 DiscoFlow exists to help communities run on Discourse with deeper automation, stronger operational reliability, and progressively more intelligent behavior.
@@ -182,7 +232,7 @@ uv run --no-editable discoflow logs watch --follow
 
 ## Documentation Map (Single Source of Truth Model)
 
-- Root `README.md` (this file): mission, vision, architecture, contributor orientation.
+- Root `README.md` (this file): admin onboarding, mission, vision, architecture, contributor orientation.
 - [`docs/local-dev.md`](docs/local-dev.md): operational local setup/testing workflow.
 - [`packages/n8n-nodes-discourse/README.md`](packages/n8n-nodes-discourse/README.md): node functionality, credentials, operations, API behavior.
 - [`discourse-extended-skills.csv`](discourse-extended-skills.csv): skill catalog dataset aligned 1:1 with Discourse Extended action keys.
@@ -212,10 +262,6 @@ grep -Fq 'optional additional fields: `Auto Track`, `Created At`, `Embed URL`, a
 grep -Fq -- '- `Create`: creates a storage key via `POST /discourse-ai/ai-bot/artifact-key-values/{artifact_id}`.' packages/n8n-nodes-discourse/README.md
 grep -Fq -- '- `Update`: updates a storage key via `POST /discourse-ai/ai-bot/artifact-key-values/{artifact_id}`.' packages/n8n-nodes-discourse/README.md
 ```
-
-## Status
-
-Pre-release and under active development.
 
 ## License
 
