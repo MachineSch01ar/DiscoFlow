@@ -1,6 +1,6 @@
 {
 	"name": "@machinesch01ar/n8n-nodes-discourse",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"description": "n8n node for Discourse AI artifact, category, post, topic, personal message, upload, and Data Explorer operations",
 	"license": "MIT",
 	"homepage": "https://github.com/MachineSch01ar/DiscoFlow",
@@ -9,7 +9,7 @@
 	],
 	"author": {
 		"name": "Dylan Wardlow",
-		"email": "dylanwardlow@users.noreply.github.com"
+		"email": "dylan@metis4labs.org"
 	},
 	"repository": {
 		"type": "git",
