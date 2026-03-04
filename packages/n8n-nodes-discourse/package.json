@@ -1,6 +1,6 @@
 {
 	"name": "@machinesch01ar/n8n-nodes-discourse",
-	"version": "0.1.1",
+	"version": "0.1.2",
 	"description": "n8n node for Discourse AI artifact, category, post, topic, personal message, upload, and Data Explorer operations",
 	"license": "MIT",
 	"homepage": "https://github.com/MachineSch01ar/DiscoFlow",
@@ -13,7 +13,8 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/MachineSch01ar/DiscoFlow.git"
+		"url": "git+https://github.com/MachineSch01ar/DiscoFlow.git",
+		"directory": "packages/n8n-nodes-discourse"
 	},
 	"scripts": {
 		"build": "n8n-node build",

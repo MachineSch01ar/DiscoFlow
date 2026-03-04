@@ -11,7 +11,6 @@ import { NodeApiError, NodeOperationError } from 'n8n-workflow';
 import { chunkTtsText, type TtsChunkStrategy } from '../tts.helpers';
 
 declare function require(moduleName: string): unknown;
-declare function setImmediate(callback: () => void): unknown;
 interface BufferLike {
 	length: number;
 	[index: number]: number;
@@ -270,18 +269,9 @@ async function waitForDelayMs(delayMs: number): Promise<void> {
 	}
 
 	const endAt = Date.now() + delayMs;
-	await new Promise<void>((resolve) => {
-		const tick = () => {
-			if (Date.now() >= endAt) {
-				resolve();
-				return;
-			}
-
-			setImmediate(tick);
-		};
-
-		tick();
-	});
+	while (Date.now() < endAt) {
+		await Promise.resolve();
+	}
 }
 
 function formatUtcTimestamp(now: Date): string {
