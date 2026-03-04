@@ -153,6 +153,8 @@ Repository structure:
   Python Typer CLI used as the primary contributor interface.
 - `scripts/dev-setup.sh`
   One-time bootstrap script for contributors.
+- `scripts/sync-creator-portal-mirror.mjs`
+  Generates and validates root-level TypeScript mirror files used by n8n Creator Portal repository checks.
 - `docs/local-dev.md`
   Canonical local setup and testing runbook.
 - `discourse-extended-skills.csv`
@@ -167,6 +169,32 @@ Local development lifecycle:
 3. `uv run --no-editable discoflow start`
 4. `uv run --no-editable discoflow watch`
 5. Validate behavior in n8n at `http://localhost:5678`
+
+## Creator Portal Compatibility Mirror
+
+DiscoFlow keeps node source-of-truth in the monorepo package directory:
+
+- `packages/n8n-nodes-discourse/credentials/*.credentials.ts`
+- `packages/n8n-nodes-discourse/nodes/**/*.node.ts`
+
+To satisfy n8n Creator Portal repository verification checks, we also maintain a generated root-level mirror:
+
+- `credentials/*.credentials.ts`
+- `nodes/**/*.node.ts`
+
+Mirror workflow:
+
+```bash
+npm --prefix packages/n8n-nodes-discourse run mirror:sync
+npm --prefix packages/n8n-nodes-discourse run mirror:check
+```
+
+Rules:
+
+- Do not hand-edit mirrored root files.
+- Treat `packages/n8n-nodes-discourse/**` as the only source of truth.
+- After credential/base-node source changes (or `package.json` `n8n.credentials` / `n8n.nodes` changes), run `mirror:sync`.
+- `mirror:check` must pass before publish/PR.
 
 ## Contributor Quick Start
 
@@ -225,6 +253,7 @@ uv run --no-editable discoflow logs watch --follow
 - Run commands from repository root.
 - Keep documentation synchronized with behavior changes.
 - CI enforces node README parity for selected high-risk operation details; keep docs and implementation in the same change.
+- Keep Creator Portal mirror files synchronized by running `mirror:sync` after credential/base-node source changes.
 - If Discourse node functionality changes, update:
   - `packages/n8n-nodes-discourse/README.md`
   - `discourse-extended-skills.csv` (maintain exactly one row per `resource.operation` action key)
@@ -252,6 +281,7 @@ Node package:
 cd packages/n8n-nodes-discourse
 npm run lint
 npm run build
+npm run mirror:check
 ```
 
 Documentation parity (enforced in CI):

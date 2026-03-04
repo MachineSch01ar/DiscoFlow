@@ -7,3 +7,9 @@ The node package README at `packages/n8n-nodes-discourse/README.md` must always 
 The skills catalog CSV at `discourse-extended-skills.csv` is required documentation and must stay in sync with the Discourse Extended action surface. Whenever a node action is added, removed, renamed, or behaviorally changed, update this CSV in the same change.
 
 The CSV must maintain exactly one row per Discourse Extended action key using the `resource.operation` convention from `packages/n8n-nodes-discourse/nodes/Discourse/actions/*/index.ts` (for example `topic.search`).
+
+The Creator Portal compatibility mirror is required documentation and packaging infrastructure. Keep repository-root mirrored files (for example `credentials/*.credentials.ts` and `nodes/**/*.node.ts`) in sync with package sources under `packages/n8n-nodes-discourse/**` by running `npm --prefix packages/n8n-nodes-discourse run mirror:sync`.
+
+Never hand-edit mirrored root files. They are generated artifacts and must only be updated via `scripts/sync-creator-portal-mirror.mjs`.
+
+Whenever `packages/n8n-nodes-discourse/package.json` `n8n.credentials` or `n8n.nodes` entries change, update and verify the mirror in the same change.

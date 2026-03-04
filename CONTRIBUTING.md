@@ -46,6 +46,33 @@ Inspect managed process output with `uv run --no-editable discoflow logs n8n --f
 
 - [packages/n8n-nodes-discourse/README.md](packages/n8n-nodes-discourse/README.md)
 
+## Creator Portal Verification Mirror
+
+To support n8n Creator Portal repository checks while keeping this repo as a monorepo, DiscoFlow maintains a root-level mirror of the Discourse node base/credential TypeScript files.
+
+Source of truth remains under:
+
+- `packages/n8n-nodes-discourse/credentials/*.credentials.ts`
+- `packages/n8n-nodes-discourse/nodes/**/*.node.ts`
+
+Mirrored output is generated at repo root (for example):
+
+- `credentials/*.credentials.ts`
+- `nodes/**/*.node.ts`
+
+Mirror maintenance commands (run from repo root):
+
+```bash
+npm --prefix packages/n8n-nodes-discourse run mirror:sync
+npm --prefix packages/n8n-nodes-discourse run mirror:check
+```
+
+Rules:
+
+- Do not hand-edit mirrored root files.
+- Always run `mirror:sync` after changing credential/base-node source files or changing `n8n.credentials` / `n8n.nodes` in package.json.
+- `mirror:check` must pass before publishing or opening a PR.
+
 ## Documentation Consistency Checklist
 
 - Root [README.md](README.md) quality-gate commands must match `.github/workflows/ci.yml`.
@@ -56,6 +83,7 @@ Inspect managed process output with `uv run --no-editable discoflow logs n8n --f
 - The skills catalog CSV must keep exactly one row per Discourse Extended action key using `resource.operation` format from `packages/n8n-nodes-discourse/nodes/Discourse/actions/*/index.ts`.
 - If AI Artifact Storage CRUD or guardrail semantics change, update both package docs and README parity grep assertions in CI/docs.
 - If setup, process-management, or troubleshooting behavior changes, update [docs/local-dev.md](docs/local-dev.md) in the same change.
+- Keep Creator Portal mirror files in sync: run `npm --prefix packages/n8n-nodes-discourse run mirror:sync` when credential/base-node source files or package `n8n` paths change.
 
 Run the same parity checks CI enforces:
 
@@ -64,6 +92,7 @@ grep -Fq 'Supports `Return All`, `Limit`, `Before`, `Page`, optional ordering fi
 grep -Fq 'optional additional fields: `Auto Track`, `Created At`, `Embed URL`, and `External ID`.' packages/n8n-nodes-discourse/README.md
 grep -Fq -- '- `Create`: creates a storage key via `POST /discourse-ai/ai-bot/artifact-key-values/{artifact_id}`.' packages/n8n-nodes-discourse/README.md
 grep -Fq -- '- `Update`: updates a storage key via `POST /discourse-ai/ai-bot/artifact-key-values/{artifact_id}`.' packages/n8n-nodes-discourse/README.md
+npm --prefix packages/n8n-nodes-discourse run mirror:check
 ```
 
 Manual skills CSV parity check (no helper script file):

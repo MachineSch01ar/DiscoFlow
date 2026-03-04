@@ -50,6 +50,10 @@ jobs:
         run: 'npm run build'
         working-directory: 'packages/n8n-nodes-discourse'
 
+      - name: Enforce Creator Portal mirror parity
+        run: 'npm run mirror:check'
+        working-directory: 'packages/n8n-nodes-discourse'
+
       - name: Enforce node README parity
         run: |
           set -euo pipefail
