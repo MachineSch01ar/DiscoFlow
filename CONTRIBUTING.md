@@ -46,6 +46,23 @@ Inspect managed process output with `uv run --no-editable discoflow logs n8n --f
 
 - [packages/n8n-nodes-discourse/README.md](packages/n8n-nodes-discourse/README.md)
 
+## Version Bumping Playbook (Multi-Artifact Repo)
+
+DiscoFlow is a multi-artifact repository. Version bumps are decided commit-by-commit based on what you are actually releasing.
+
+| Change type | Bump npm package version (`packages/n8n-nodes-discourse/package.json`) | Bump CLI version (`pyproject.toml`) | Tag guidance |
+| --- | --- | --- | --- |
+| n8n node/package release work | Yes (required for publish) | No (unless also releasing CLI) | `n8n-nodes-discourse-vX.Y.Z` |
+| CLI release work | No (unless also releasing npm package) | Yes (for CLI release) | `discoflow-cli-vX.Y.Z` |
+| Repo-only docs/process/skills/workflow-asset changes | No (default) | No (default) | Optional milestone tag only if change is substantial |
+| Mixed release touching npm package and CLI | Yes | Yes | Use both package-specific tags |
+
+Rules:
+
+- Do not force npm and CLI versions to match.
+- Do not bump versions only because a commit exists; bump versions only when cutting that artifact's release.
+- For substantial non-package repository milestones, optional tag format is `discoflow-repo-milestone-YYYYMMDD-<short-slug>`.
+
 ## Creator Portal Verification Mirror
 
 To support n8n Creator Portal repository checks while keeping this repo as a monorepo, DiscoFlow maintains a root-level mirror of the Discourse node base/credential TypeScript files.
@@ -73,6 +90,123 @@ Rules:
 - Always run `mirror:sync` after changing credential/base-node source files or changing `n8n.credentials` / `n8n.nodes` in package.json.
 - `mirror:check` must pass before publishing or opening a PR.
 
+## Package Release Runbook (n8n-nodes-discourse)
+
+This section is the canonical npm/git release workflow for:
+
+- `@machinesch01ar/n8n-nodes-discourse`
+
+Use the `Version Bumping Playbook (Multi-Artifact Repo)` section above first to decide whether this release flow applies to your change.
+
+### One-time local setup
+
+From package directory:
+
+```bash
+cd /Users/dylanwardlow/Documents/Code/DiscoFlow/packages/n8n-nodes-discourse
+export npm_config_cache=/Users/dylanwardlow/Documents/Code/DiscoFlow/.tmp/npm-cache
+npm login
+npm whoami
+```
+
+Why:
+
+- `npm whoami` confirms publish identity.
+- Local cache avoids historical `~/.npm` permission issues.
+
+### Standard manual release flow (recommended)
+
+1) Sync and validate git state:
+
+```bash
+cd /Users/dylanwardlow/Documents/Code/DiscoFlow
+git checkout main
+git pull origin main
+git status --short --branch
+```
+
+2) Move to package directory and install dependencies:
+
+```bash
+cd /Users/dylanwardlow/Documents/Code/DiscoFlow/packages/n8n-nodes-discourse
+export npm_config_cache=/Users/dylanwardlow/Documents/Code/DiscoFlow/.tmp/npm-cache
+npm ci
+```
+
+3) Bump package version (pick one):
+
+```bash
+npm version patch --no-git-tag-version
+# npm version minor --no-git-tag-version
+# npm version major --no-git-tag-version
+```
+
+4) Run release checks:
+
+```bash
+npm run mirror:sync
+npm run mirror:check
+npm run lint
+npm run build
+npm pack --dry-run
+```
+
+5) Commit release state:
+
+```bash
+VERSION=$(node -p "require('./package.json').version")
+cd /Users/dylanwardlow/Documents/Code/DiscoFlow
+git add -A
+git commit -m "release: @machinesch01ar/n8n-nodes-discourse v${VERSION}"
+```
+
+6) Publish to npm (manual guarded path):
+
+```bash
+cd /Users/dylanwardlow/Documents/Code/DiscoFlow/packages/n8n-nodes-discourse
+RELEASE_MODE=true npm publish --access public
+```
+
+7) Verify publication:
+
+```bash
+npm view @machinesch01ar/n8n-nodes-discourse version
+```
+
+8) Tag and push release:
+
+```bash
+VERSION=$(node -p "require('./package.json').version")
+cd /Users/dylanwardlow/Documents/Code/DiscoFlow
+git tag "n8n-nodes-discourse-v${VERSION}"
+git push origin main
+git push origin "n8n-nodes-discourse-v${VERSION}"
+```
+
+9) Create GitHub release from that tag in the repository UI.
+
+### Optional automated release flow
+
+When ready for full automation, use:
+
+```bash
+cd /Users/dylanwardlow/Documents/Code/DiscoFlow/packages/n8n-nodes-discourse
+npm run release
+```
+
+This uses `n8n-node release` (`release-it`) and performs stricter git/branch/changelog/tag/push/GitHub-release checks.
+
+### Common release failures and fixes
+
+- `ENOENT ... /DiscoFlow/package.json`
+  - Run package publish commands from `packages/n8n-nodes-discourse`, not repo root.
+- `Run \`npm run release\` to publish the package`
+  - Expected guardrail from `n8n-node prerelease`. Use manual publish with `RELEASE_MODE=true` or use `npm run release`.
+- `EPERM ... ~/.npm/_cacache`
+  - Ensure `npm_config_cache=/Users/dylanwardlow/Documents/Code/DiscoFlow/.tmp/npm-cache`.
+- `E403` on publish
+  - Version already exists or publish permission issue. Re-check `npm whoami`, bump version, and retry.
+
 ## Documentation Consistency Checklist
 
 - Root [README.md](README.md) quality-gate commands must match `.github/workflows/ci.yml`.
@@ -84,6 +218,8 @@ Rules:
 - If AI Artifact Storage CRUD or guardrail semantics change, update both package docs and README parity grep assertions in CI/docs.
 - If setup, process-management, or troubleshooting behavior changes, update [docs/local-dev.md](docs/local-dev.md) in the same change.
 - Keep Creator Portal mirror files in sync: run `npm --prefix packages/n8n-nodes-discourse run mirror:sync` when credential/base-node source files or package `n8n` paths change.
+- Keep package release instructions in sync with `packages/n8n-nodes-discourse/package.json` scripts and publish guardrails (`mirror:*`, `prepublishOnly`, `release`).
+- Keep versioning policy and tag namespace guidance synchronized across `AGENTS.md` and this file.
 
 Run the same parity checks CI enforces:
 

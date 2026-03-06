@@ -13,3 +13,21 @@ The Creator Portal compatibility mirror is required documentation and packaging 
 Never hand-edit mirrored root files. They are generated artifacts and must only be updated via `scripts/sync-creator-portal-mirror.mjs`.
 
 Whenever `packages/n8n-nodes-discourse/package.json` `n8n.credentials` or `n8n.nodes` entries change, update and verify the mirror in the same change.
+
+Discourse node package release guardrails are mandatory: `packages/n8n-nodes-discourse/package.json` `prepublishOnly` runs `npm run mirror:check` and `n8n-node prerelease`, so direct `npm publish` is blocked unless `RELEASE_MODE=true` is set.
+
+Preferred release command is `npm --prefix packages/n8n-nodes-discourse run release`. Manual fallback for guided releases is `RELEASE_MODE=true npm publish --access public` from `packages/n8n-nodes-discourse`.
+
+When creating package release tags, use `n8n-nodes-discourse-vX.Y.Z`. Keep `CONTRIBUTING.md` release instructions synchronized with actual scripts and publish guardrails.
+
+DiscoFlow is a multi-artifact repository. Do not assume one global version must be bumped on every change.
+
+Versioning decisions are commit-by-commit:
+
+- Bump `packages/n8n-nodes-discourse/package.json` version only when cutting an npm package release.
+- Bump `pyproject.toml` `project.version` only when cutting a `discoflow-cli` release.
+- For repo-only changes (for example docs, `discourse-extended-skills.csv`, workflow JSON assets), no package version bump is required by default.
+
+If a non-package repo change is substantial and should be marked, use an optional repository milestone tag format: `discoflow-repo-milestone-YYYYMMDD-<short-slug>`.
+
+npm package and CLI versions do not need to match. Keep `CONTRIBUTING.md` versioning playbook synchronized with this policy.

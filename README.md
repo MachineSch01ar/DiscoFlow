@@ -265,6 +265,8 @@ uv run --no-editable discoflow logs watch --follow
 - [`docs/local-dev.md`](docs/local-dev.md): operational local setup/testing workflow.
 - [`packages/n8n-nodes-discourse/README.md`](packages/n8n-nodes-discourse/README.md): node functionality, credentials, operations, API behavior.
 - [`discourse-extended-skills.csv`](discourse-extended-skills.csv): skill catalog dataset aligned 1:1 with Discourse Extended action keys.
+- [`CONTRIBUTING.md`](CONTRIBUTING.md#version-bumping-playbook-multi-artifact-repo): canonical version-bumping policy for npm package, CLI, and repo-only changes.
+- [`CONTRIBUTING.md`](CONTRIBUTING.md#package-release-runbook-n8n-nodes-discourse): canonical package release runbook (mirror checks, npm publish, git tags).
 
 ## Quality Gates
 
