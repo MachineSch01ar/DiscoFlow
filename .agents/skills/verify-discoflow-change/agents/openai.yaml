@@ -1,0 +1,6 @@
+interface:
+  display_name: "Verify DiscoFlow Change"
+  short_description: "Run the right checks before handoff"
+  default_prompt: "Use $verify-discoflow-change to validate a DiscoFlow change before handoff."
+policy:
+  allow_implicit_invocation: false

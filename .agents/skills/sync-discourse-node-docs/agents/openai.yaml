@@ -1,0 +1,4 @@
+interface:
+  display_name: "Sync Discourse Node Docs"
+  short_description: "Keep node docs and skills CSV aligned"
+  default_prompt: "Use $sync-discourse-node-docs to update Discourse Extended docs for a node change."

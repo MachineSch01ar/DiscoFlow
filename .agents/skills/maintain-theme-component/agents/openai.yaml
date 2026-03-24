@@ -1,0 +1,4 @@
+interface:
+  display_name: "Maintain Theme Component"
+  short_description: "Maintain DiscoFlow theme components cleanly"
+  default_prompt: "Use $maintain-theme-component to implement or update a DiscoFlow theme component."

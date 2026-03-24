@@ -1,0 +1,46 @@
+name: Publish AudioSync Component for Discourse
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'components/discoflow-audiosync/**'
+      - '.github/workflows/publish-discoflow-audiosync.yml'
+  workflow_dispatch:
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    env:
+      SOURCE_DIR: components/discoflow-audiosync
+      TARGET_REPO: MachineSch01ar/DiscoFlow-AudioSync-Component
+      TARGET_BRANCH: main
+
+    steps:
+      - name: Check out monorepo
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: Verify component root
+        run: |
+          set -euo pipefail
+          test -f "$SOURCE_DIR/about.json"
+
+      - name: Split component history into its own branch
+        run: |
+          set -euo pipefail
+          git subtree split --prefix="$SOURCE_DIR" -b publish-component
+
+      - name: Push split branch to target repo
+        env:
+          PUBLISH_TOKEN: ${{ secrets.PUBLISH_COMPONENT_TOKEN }}
+        run: |
+          set -euo pipefail
+          git push --force \
+            "https://x-access-token:${PUBLISH_TOKEN}@github.com/${TARGET_REPO}.git" \
+            publish-component:${TARGET_BRANCH}

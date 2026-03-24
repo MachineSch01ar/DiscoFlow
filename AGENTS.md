@@ -1,33 +1,37 @@
-Always use the n8nDocs MCP server to search documentation, read node properties, and check n8n architectural standards whenever I ask you to build or troubleshoot n8n custom nodes. Do this automatically without me having to explicitly ask.
+## Repo Overview
 
-When working with the Discourse JSON REST API, use your web search tool to search the offical Discourse docs (https://docs.discourse.org), the Discourse community (https://meta.discourse.org), or Discourse's open-source GitHub repo.
+DiscoFlow is a multi-artifact repository with three active surfaces:
 
-The node package README at `packages/n8n-nodes-discourse/README.md` must always be up-to-date. Whenever functionality is added, removed, or changed in the Discourse node, update that README accordingly. It must contain a complete feature description for the node (an explanation of each feature/functionality it has).
+- `packages/n8n-nodes-discourse` for the `Discourse Extended` n8n node package
+- `components/<slug>/` for Discourse theme components
+- `src/discoflow_cli` for the contributor CLI
 
-The skills catalog CSV at `discourse-extended-skills.csv` is required documentation and must stay in sync with the Discourse Extended action surface. Whenever a node action is added, removed, renamed, or behaviorally changed, update this CSV in the same change.
+Codex-only reusable workflows live in `.agents/skills/`. Keep this file small and use the repo skills for detailed procedures.
 
-The CSV must maintain exactly one row per Discourse Extended action key using the `resource.operation` convention from `packages/n8n-nodes-discourse/nodes/Discourse/actions/*/index.ts` (for example `topic.search`).
+## Mandatory Skill Usage
 
-The Creator Portal compatibility mirror is required documentation and packaging infrastructure. Keep repository-root mirrored files (for example `credentials/*.credentials.ts` and `nodes/**/*.node.ts`) in sync with package sources under `packages/n8n-nodes-discourse/**` by running `npm --prefix packages/n8n-nodes-discourse run mirror:sync`.
+Use the matching root skill whenever the task fits:
 
-Never hand-edit mirrored root files. They are generated artifacts and must only be updated via `scripts/sync-creator-portal-mirror.mjs`.
+- `build-discourse-node` for work in `packages/n8n-nodes-discourse`, `nodes/`, or `credentials/`
+- `sync-discourse-node-docs` when Discourse node actions, resources, credentials, or behavior change
+- `maintain-theme-component` for any work under `components/*`
+- `manage-release-versioning` for publish, release, tag, or version-bump tasks
+- `verify-discoflow-change` near handoff to choose the correct verification stack
 
-Whenever `packages/n8n-nodes-discourse/package.json` `n8n.credentials` or `n8n.nodes` entries change, update and verify the mirror in the same change.
+These Codex skills are separate from `discourse-extended-skills.csv`, which is product documentation for the Discourse Extended action surface.
 
-Discourse node package release guardrails are mandatory: `packages/n8n-nodes-discourse/package.json` `prepublishOnly` runs `npm run mirror:check` and `n8n-node prerelease`, so direct `npm publish` is blocked unless `RELEASE_MODE=true` is set.
+## Always-True Invariants
 
-Preferred release command is `npm --prefix packages/n8n-nodes-discourse run release`. Manual fallback for guided releases is `RELEASE_MODE=true npm publish --access public` from `packages/n8n-nodes-discourse`.
+- Always use the `n8nDocs` MCP server first for n8n custom node implementation or troubleshooting.
+- For Discourse API or theme-component behavior, research official Discourse docs, Meta topics, and core GitHub sources instead of relying on memory.
+- Treat `packages/n8n-nodes-discourse/**` as the source of truth for the node package. Never hand-edit mirrored root files under `credentials/` or `nodes/`; update them only via `npm --prefix packages/n8n-nodes-discourse run mirror:sync`.
+- Keep `packages/n8n-nodes-discourse/README.md` and `discourse-extended-skills.csv` in sync with Discourse Extended action-surface changes. The CSV must keep exactly one row per `resource.operation` action key.
+- Treat `components/<slug>/` as the source of truth for each theme component. When component behavior, install requirements, UI behavior, or user-facing functionality changes, update that component's `README.md`, `about.json`, relevant `locales/*.yml`, and related install notes in the same change.
+- Versioning is artifact-specific. Bump `packages/n8n-nodes-discourse/package.json` only for npm package releases, bump `pyproject.toml` only for CLI releases, and usually skip version bumps for repo-only docs/process/workflow changes.
 
-When creating package release tags, use `n8n-nodes-discourse-vX.Y.Z`. Keep `CONTRIBUTING.md` release instructions synchronized with actual scripts and publish guardrails.
+## Verify and Release Reminders
 
-DiscoFlow is a multi-artifact repository. Do not assume one global version must be bumped on every change.
-
-Versioning decisions are commit-by-commit:
-
-- Bump `packages/n8n-nodes-discourse/package.json` version only when cutting an npm package release.
-- Bump `pyproject.toml` `project.version` only when cutting a `discoflow-cli` release.
-- For repo-only changes (for example docs, `discourse-extended-skills.csv`, workflow JSON assets), no package version bump is required by default.
-
-If a non-package repo change is substantial and should be marked, use an optional repository milestone tag format: `discoflow-repo-milestone-YYYYMMDD-<short-slug>`.
-
-npm package and CLI versions do not need to match. Keep `CONTRIBUTING.md` versioning playbook synchronized with this policy.
+- Prefer the active skill's workflow over ad hoc checklists; keep `CONTRIBUTING.md` aligned with real scripts, guardrails, and release steps whenever they change.
+- Preferred n8n node release command: `npm --prefix packages/n8n-nodes-discourse run release`.
+- Manual npm publish fallback: `RELEASE_MODE=true npm publish --access public` from `packages/n8n-nodes-discourse`.
+- Package release tags use `n8n-nodes-discourse-vX.Y.Z`. Substantial repo-only milestones may use `discoflow-repo-milestone-YYYYMMDD-<short-slug>`.

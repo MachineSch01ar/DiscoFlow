@@ -94,7 +94,6 @@ CSV schema (column order):
 - `skill_key`
 - `enabled`
 - `scope`
-- `priority`
 - `name`
 - `description_short`
 - `catalog_line`
@@ -110,6 +109,17 @@ Maintenance requirement:
 - Keep this CSV in sync with the action surface in `nodes/Discourse/actions/*/index.ts`.
 - Maintain exactly one CSV row per action key using `resource.operation` format (for example, `topic.search`).
 - Whenever an action is added, removed, renamed, or behaviorally changed, update this CSV in the same change as the node code and README updates.
+- `instructions_md` is agent-facing documentation and must:
+  - start at heading level `##` and never use `#`
+  - include `## What This Tool Does`, `## Parameters`, `## How To Think About This Tool`, `## Examples`, and `## Output, Failure Modes, And Guardrails`
+  - document all exposed node inputs for the action, including nested collection fields, conditional inputs, output toggles, and concrete usage/decision examples
+
+Validation and scaffolding:
+
+```bash
+npm --prefix packages/n8n-nodes-discourse run skills:check
+npm --prefix packages/n8n-nodes-discourse run skills:scaffold -- topic.search
+```
 
 ## Installation
 

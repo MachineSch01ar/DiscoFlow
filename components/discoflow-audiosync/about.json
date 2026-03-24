@@ -1,0 +1,8 @@
+{
+  "name": "Audio Sync Highlighter",
+  "component": true,
+  "authors": "Your Name",
+  "about_url": "https://github.com/yourname/discourse-audio-sync-highlighter",
+  "license_url": "https://github.com/yourname/discourse-audio-sync-highlighter/blob/main/LICENSE",
+  "theme_version": "0.1.0"
+}

@@ -6,11 +6,13 @@
 
 # DiscoFlow
 
-DiscoFlow is an open-source project for building reliable, programmatic, and cognitively aware workflows around Discourse.
+DiscoFlow is an open-source, multi-artifact project for building reliable automation, theme/UI extensions, and cognitively aware workflows around Discourse.
 
 ## Get Started (Discourse Admins)
 
 This section is for Discourse admins/operators setting up DiscoFlow on a forum instance. Contributor setup for local development is documented later in this file under `Contributor Quick Start`.
+
+Looking for a Discourse theme component instead of the n8n node? Skip to [Current Artifacts (Today)](#current-artifacts-today) for the component catalog, then use the component-local README for the specific component you want, such as [`components/discoflow-audiosync/README.md`](components/discoflow-audiosync/README.md).
 
 ### 1) Choose your n8n path
 
@@ -91,23 +93,28 @@ Today, many Discourse teams face one or more of these problems:
 - Limited integration between Discourse operations and modern AI systems.
 - Difficulty operationalizing research-grade ideas from AI and cognitive science in production workflows.
 
-DiscoFlow addresses this by combining an n8n-native node package with deterministic contributor tooling and a clear architecture for growth.
+DiscoFlow addresses this by combining an n8n-native automation package, Discourse theme components, deterministic contributor tooling, and a clear architecture for growth.
 
 ## Strategic Objectives
 
-- Build high-coverage, production-usable Discourse automation primitives in n8n.
+- Build high-coverage, production-usable Discourse automation primitives in n8n and complementary Discourse theme/UI components.
 - Make local development and testing reproducible for all contributors.
 - Support practical integrations with state-of-the-art AI tooling, including LLM-based workflows.
 - Incorporate concepts from AI as a scientific field and from cognitive science when they improve real community outcomes.
 - Continuously align and interoperate with Discourse's core AI capabilities.
 
-## Current Scope (Today)
+## Current Artifacts (Today)
 
-DiscoFlow currently centers on one package:
+DiscoFlow currently ships across three active artifact surfaces:
 
-- `packages/n8n-nodes-discourse` providing the **Discourse Extended** n8n community node.
+- `packages/n8n-nodes-discourse`
+  TypeScript n8n community node package providing **Discourse Extended**.
+- `components/`
+  Monorepo source-of-truth for Discourse theme components. The first shipped component is [`components/discoflow-audiosync/README.md`](components/discoflow-audiosync/README.md), which adds word-level audio sync highlighting for posts with an attached audio file and alignment JSON.
+- `src/discoflow_cli`
+  Python Typer CLI used as the primary contributor interface for local bootstrap, process management, and diagnostics.
 
-Current supported resources include:
+Current supported resources in `Discourse Extended` include:
 
 - `AI Artifact`
 - `AI Artifact Storage`
@@ -118,16 +125,16 @@ Current supported resources include:
 - `Upload`
 - `Data Explorer`
 
-Full feature and operation details:
+Detailed artifact docs:
 
 - [`packages/n8n-nodes-discourse/README.md`](packages/n8n-nodes-discourse/README.md)
+- [`components/discoflow-audiosync/README.md`](components/discoflow-audiosync/README.md)
 
 ## Long-Term Direction
 
-DiscoFlow is intentionally structured as a multi-component system over time. The node package is phase one.
+DiscoFlow is intentionally structured as a multi-artifact system. n8n automation and theme components are active surfaces today, and future additions may include:
 
-Future components may include:
-
+- Additional Discourse theme components and UI affordances for specialized community workflows.
 - Higher-level orchestration services around Discourse workflows.
 - Cognitive pipelines for moderation, synthesis, memory, and retrieval.
 - Evaluation and feedback loops to measure real community impact.
@@ -149,12 +156,16 @@ Repository structure:
 
 - `packages/n8n-nodes-discourse`
   TypeScript n8n community node package (`Discourse Extended`).
+- `components/<slug>`
+  Source-of-truth directories for Discourse theme components maintained in the monorepo.
 - `src/discoflow_cli`
   Python Typer CLI used as the primary contributor interface.
 - `scripts/dev-setup.sh`
   One-time bootstrap script for contributors.
 - `scripts/sync-creator-portal-mirror.mjs`
   Generates and validates root-level TypeScript mirror files used by n8n Creator Portal repository checks.
+- `.github/workflows/publish-discoflow-audiosync.yml`
+  Example component publish workflow that subtree-splits `components/discoflow-audiosync` and pushes it to a standalone Discourse-installable repository.
 - `docs/local-dev.md`
   Canonical local setup and testing runbook.
 - `discourse-extended-skills.csv`
@@ -169,6 +180,11 @@ Local development lifecycle:
 3. `uv run --no-editable discoflow start`
 4. `uv run --no-editable discoflow watch`
 5. Validate behavior in n8n at `http://localhost:5678`
+
+Component publishing model:
+
+- Component source of truth stays under `components/<slug>/` in this monorepo.
+- A component can be published to a standalone Discourse-installable repository via a workflow that `git subtree split`s the component directory and pushes the result, as shown in [`publish-discoflow-audiosync.yml`](.github/workflows/publish-discoflow-audiosync.yml).
 
 ## Creator Portal Compatibility Mirror
 
@@ -252,18 +268,27 @@ uv run --no-editable discoflow logs watch --follow
 - Do not rely on `UV_NO_EDITABLE` exports alone; prefer explicit `--no-editable` command usage.
 - Run commands from repository root.
 - Keep documentation synchronized with behavior changes.
+- Keep this root `README.md` focused on artifact catalog/orientation content; keep detailed install and usage behavior in artifact-local READMEs.
 - CI enforces node README parity for selected high-risk operation details; keep docs and implementation in the same change.
 - Keep Creator Portal mirror files synchronized by running `mirror:sync` after credential/base-node source changes.
 - If Discourse node functionality changes, update:
   - `packages/n8n-nodes-discourse/README.md`
   - `discourse-extended-skills.csv` (maintain exactly one row per `resource.operation` action key)
   - `docs/local-dev.md` if setup/test behavior changes
+- If a Discourse theme component changes, update:
+  - `components/<slug>/README.md`
+  - `components/<slug>/about.json`
+  - relevant `components/<slug>/locales/*.yml`
+  - any component-specific publish workflow or repository-reference metadata affected by the change
+- If the repo's active artifact catalog changes (for example, a new component is added, removed, or renamed), update this root `README.md` in the same change.
 
 ## Documentation Map (Single Source of Truth Model)
 
-- Root `README.md` (this file): admin onboarding, mission, vision, architecture, contributor orientation.
+- Root `README.md` (this file): artifact catalog, admin onboarding, mission, vision, architecture, contributor orientation.
+- `components/<slug>/README.md`: component-specific install, usage, and behavior docs for Discourse theme components.
 - [`docs/local-dev.md`](docs/local-dev.md): operational local setup/testing workflow.
 - [`packages/n8n-nodes-discourse/README.md`](packages/n8n-nodes-discourse/README.md): node functionality, credentials, operations, API behavior.
+- `.github/workflows/publish-*.yml`: publish/sync workflows for components mirrored to standalone repositories.
 - [`discourse-extended-skills.csv`](discourse-extended-skills.csv): skill catalog dataset aligned 1:1 with Discourse Extended action keys.
 - [`CONTRIBUTING.md`](CONTRIBUTING.md#version-bumping-playbook-multi-artifact-repo): canonical version-bumping policy for npm package, CLI, and repo-only changes.
 - [`CONTRIBUTING.md`](CONTRIBUTING.md#package-release-runbook-n8n-nodes-discourse): canonical package release runbook (mirror checks, npm publish, git tags).

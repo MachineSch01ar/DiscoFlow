@@ -1,0 +1,6 @@
+interface:
+  display_name: "Manage Release Versioning"
+  short_description: "Handle release and versioning tasks safely"
+  default_prompt: "Use $manage-release-versioning to decide version bumps or run a DiscoFlow release workflow."
+policy:
+  allow_implicit_invocation: false

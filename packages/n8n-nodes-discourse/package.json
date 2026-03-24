@@ -24,6 +24,8 @@
 		"lint:fix": "n8n-node lint --fix",
 		"mirror:sync": "node ../../scripts/sync-creator-portal-mirror.mjs",
 		"mirror:check": "node ../../scripts/sync-creator-portal-mirror.mjs --check",
+		"skills:check": "node ./scripts/discourse-skills-catalog.mjs check",
+		"skills:scaffold": "node ./scripts/discourse-skills-catalog.mjs scaffold",
 		"release": "n8n-node release",
 		"prepublishOnly": "npm run mirror:check && n8n-node prerelease"
 	},

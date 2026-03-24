@@ -46,6 +46,13 @@ Inspect managed process output with `uv run --no-editable discoflow logs n8n --f
 
 - [packages/n8n-nodes-discourse/README.md](packages/n8n-nodes-discourse/README.md)
 
+## Codex Skills
+
+Repo-shared Codex skills live in `.agents/skills/`.
+Use `/skills` or mention `$skill-name` to invoke them explicitly.
+Keep `AGENTS.md` for routing rules and repo-wide invariants, not long procedural playbooks.
+These Codex skills are separate from [`discourse-extended-skills.csv`](discourse-extended-skills.csv), which documents the Discourse Extended action surface.
+
 ## Version Bumping Playbook (Multi-Artifact Repo)
 
 DiscoFlow is a multi-artifact repository. Version bumps are decided commit-by-commit based on what you are actually releasing.
@@ -231,117 +238,11 @@ grep -Fq -- '- `Update`: updates a storage key via `POST /discourse-ai/ai-bot/ar
 npm --prefix packages/n8n-nodes-discourse run mirror:check
 ```
 
-Manual skills CSV parity check (no helper script file):
+Discourse skills catalog checks:
 
 ```bash
-node - <<'NODE'
-const fs = require('fs');
-const path = require('path');
-
-function parseCsv(text) {
-	const rows = [];
-	let row = [];
-	let field = '';
-	let i = 0;
-	let inQuotes = false;
-
-	while (i < text.length) {
-		const c = text[i];
-
-		if (inQuotes) {
-			if (c === '"') {
-				if (text[i + 1] === '"') {
-					field += '"';
-					i += 2;
-					continue;
-				}
-				inQuotes = false;
-				i++;
-				continue;
-			}
-			field += c;
-			i++;
-			continue;
-		}
-
-		if (c === '"') {
-			inQuotes = true;
-			i++;
-			continue;
-		}
-		if (c === ',') {
-			row.push(field);
-			field = '';
-			i++;
-			continue;
-		}
-		if (c === '\n') {
-			row.push(field);
-			rows.push(row);
-			row = [];
-			field = '';
-			i++;
-			continue;
-		}
-		if (c === '\r') {
-			i++;
-			continue;
-		}
-		field += c;
-		i++;
-	}
-
-	if (field.length || row.length) {
-		row.push(field);
-		rows.push(row);
-	}
-
-	return rows;
-}
-
-const actionsRoot = 'packages/n8n-nodes-discourse/nodes/Discourse/actions';
-const actionKeys = [];
-
-for (const entry of fs.readdirSync(actionsRoot)) {
-	const indexPath = path.join(actionsRoot, entry, 'index.ts');
-	if (!fs.existsSync(indexPath)) continue;
-
-	const source = fs.readFileSync(indexPath, 'utf8');
-	const resource = (source.match(/resource\s*=\s*'([^']+)'/) || [])[1] ?? entry;
-	const optionsBlock = source.match(/options:\s*\[(.*?)\]\s*,\s*default:/s);
-	if (!optionsBlock) continue;
-
-	for (const match of optionsBlock[1].matchAll(/value:\s*'([^']+)'/g)) {
-		actionKeys.push(`${resource}.${match[1]}`);
-	}
-}
-
-const csvRows = parseCsv(fs.readFileSync('discourse-extended-skills.csv', 'utf8'));
-const header = csvRows[0] ?? [];
-const skillKeyIndex = header.indexOf('skill_key');
-
-if (skillKeyIndex === -1) {
-	console.error('CSV missing skill_key column');
-	process.exit(1);
-}
-
-const skillKeys = csvRows
-	.slice(1)
-	.map((row) => row[skillKeyIndex])
-	.filter(Boolean);
-
-const actionSet = new Set(actionKeys);
-const skillSet = new Set(skillKeys);
-const missingInCsv = actionKeys.filter((key) => !skillSet.has(key));
-const extraInCsv = skillKeys.filter((key) => !actionSet.has(key));
-
-if (missingInCsv.length || extraInCsv.length) {
-	console.error('CSV/action key mismatch detected.');
-	if (missingInCsv.length) console.error('Missing in CSV:', missingInCsv.join(', '));
-	if (extraInCsv.length) console.error('Extra in CSV:', extraInCsv.join(', '));
-	process.exit(1);
-}
-
-console.log(`CSV/action key parity OK (${actionSet.size} keys).`);
-NODE
+npm --prefix packages/n8n-nodes-discourse run skills:check
+npm --prefix packages/n8n-nodes-discourse run skills:scaffold -- topic.search
 ```
+
+`skills:check` verifies action-key parity, exact CSV header order, the absence of the legacy `priority` column, required `instructions_md` sections, H2-only top-level headings, and parameter coverage for each action.
